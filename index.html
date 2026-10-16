@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d1218">
+<title>相位 PHASE</title>
+<style>
+:root{color-scheme:dark;--bg:#0d1218;--ink:#e8ece9;--mute:#7f8c99;--line:#26313c;--soft:#151d26;--accent:#d9edb7}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:13px/1.4 -apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei",sans-serif}
+body{min-height:100vh;min-height:100dvh;display:flex;justify-content:center;align-items:center;overflow-x:hidden}
+button,select{font:inherit;color:inherit}
+button{cursor:pointer;touch-action:manipulation}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.app{width:var(--w,100%);max-width:100%;padding:12px;display:flex;flex-direction:column;gap:8px}
+
+.bar{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:40px}
+.level{display:flex;align-items:center;gap:4px;min-width:0}
+.brand{margin:0 6px 0 0;font-size:14px;font-weight:600;letter-spacing:.32em;white-space:nowrap}
+.picker{position:relative;display:flex;min-width:0}
+.picker:after{content:"";position:absolute;right:9px;top:50%;margin-top:-2px;border:4px solid transparent;border-top-color:var(--mute);border-bottom:0;pointer-events:none}
+select{appearance:none;-webkit-appearance:none;min-width:0;max-width:100%;height:36px;padding:0 26px 0 9px;border:1px solid var(--line);border-radius:6px;background:var(--soft);cursor:pointer;text-overflow:ellipsis;font-variant-numeric:tabular-nums}
+select:hover{border-color:#3a4855}
+.total{color:var(--mute);font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:2px}
+.actions{display:flex;gap:6px;flex:none}
+.icon{width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--mute);font-size:15px;line-height:1}
+.icon:hover{color:var(--ink);border-color:#3a4855}
+
+.stage{position:relative;aspect-ratio:16/9;width:100%;background:#0f1722;border-radius:3px;overflow:hidden}
+.stage:focus-visible{outline-color:#d9edb780;outline-offset:3px}
+canvas{display:block;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges}
+.overlay{position:absolute;inset:0;display:grid;place-items:center;padding:8px;text-align:center;background:#0b1119d9}
+.overlay[hidden]{display:none}
+.card{display:flex;flex-direction:column;align-items:center;gap:10px}
+.card h2{margin:0;font-size:clamp(18px,3.2vw,30px);font-weight:600;letter-spacing:.24em;padding-left:.24em}
+.card p{margin:0;color:#b6c2cc;font-size:clamp(12px,1.4vw,14px)}
+.card p:empty{display:none}
+.row{display:flex;gap:8px;margin-top:4px}
+.primary,.ghost{height:36px;padding:0 20px;border-radius:6px;font-size:13px}
+.primary{border:0;background:var(--accent);color:#1c271c;font-weight:600}
+.primary:hover{background:#eaf6d7}
+.ghost{border:1px solid #3a4855;background:transparent}
+.ghost:hover{border-color:var(--mute)}
+.ghost[hidden]{display:none}
+.keys{display:grid;grid-template-columns:auto auto;gap:4px 14px;margin:6px 0 0;color:var(--mute);font-size:12px;text-align:left}
+.keys[hidden]{display:none}
+.keys dt{color:var(--ink);text-align:right}
+.keys dd{margin:0}
+kbd{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;padding:1px 5px;border:1px solid #3a4855;border-bottom-width:2px;border-radius:4px;background:#1a232d}
+
+.status{display:flex;align-items:center;gap:18px;min-height:24px;color:var(--mute);font-size:13px}
+.phase{display:flex;align-items:center;gap:8px}
+.cycle{display:flex;align-items:center;gap:3px}
+.cycle i{width:8px;height:8px;opacity:.28;transition:width .08s,height .08s}
+.cycle i.on{width:12px;height:12px;opacity:1}
+#phase-name{min-width:1em;font-weight:600}
+.dash{display:flex;align-items:center;gap:7px}
+.gem{width:8px;height:8px;transform:rotate(45deg);background:#ffb24d;border:1px solid #ffb24d}
+.dash.spent .gem{background:transparent;border-color:#5b6874}
+.dash.spent{color:#55616c}
+.stamina{display:flex;align-items:center;gap:7px}
+.stamina[hidden]{display:none}
+.meter{width:56px;height:4px;background:#2a3540}
+#stamina-fill{display:block;height:100%;background:var(--accent)}
+.stamina.low #stamina-fill{background:#ff8f91}
+@media (max-width:560px){.app{padding:10px 12px}.brand{display:none}.keys{display:none}.status{gap:12px}.card{gap:8px}.primary,.ghost{height:34px;padding:0 16px}}
+@media (prefers-reduced-motion:reduce){.cycle i{transition:none}}
+</style>
+</head>
+<body>
+<main class="app" id="app">
+<header class="bar">
+<div class="level">
+<h1 class="brand">相位</h1>
+<label class="picker"><span class="sr">選擇關卡</span><select id="level"></select></label>
+<span class="total" id="total" aria-hidden="true"></span>
+</div>
+<div class="actions">
+<button class="icon" id="restart" type="button" aria-label="重玩本關（R）" title="重玩 · R">↻</button>
+<button class="icon" id="pause" type="button" aria-label="暫停（Esc）" title="暫停 · Esc">Ⅱ</button>
+</div>
+</header>
+<div class="stage" id="stage" tabindex="0" role="group" aria-label="遊戲畫面：方向鍵移動，Z 跳躍，X 衝刺，C 抓牆">
+<canvas id="game" width="320" height="180" aria-hidden="true"></canvas>
+<div class="overlay" id="overlay">
+<div class="card" role="dialog" aria-labelledby="ov-title" aria-describedby="ov-text">
+<h2 id="ov-title">相位</h2>
+<p id="ov-text">跳躍換色，衝刺保色</p>
+<div class="row"><button class="primary" id="ov-primary" type="button">開始</button><button class="ghost" id="ov-secondary" type="button" hidden>重玩本關</button></div>
+<dl class="keys" id="keys">
+<dt><kbd>←↑↓→</kbd> <kbd>WASD</kbd></dt><dd>移動・瞄準・攀爬</dd>
+<dt><kbd>Z</kbd> <kbd>Space</kbd></dt><dd>跳躍</dd>
+<dt><kbd>X</kbd></dt><dd>衝刺</dd>
+<dt><kbd>C</kbd> <kbd>Shift</kbd></dt><dd>抓牆</dd>
+<dt><kbd>R</kbd> <kbd>Esc</kbd></dt><dd>重玩・暫停</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="status" id="status">
+<span class="phase"><span class="cycle" id="cycle" aria-hidden="true"><i></i><i></i><i></i></span><span id="phase-name">紅</span></span>
+<span class="dash" id="dash"><b class="gem" aria-hidden="true"></b><span id="dash-text">衝刺</span></span>
+<span class="stamina" id="stamina" hidden><span>體力</span><span class="meter"><span id="stamina-fill"></span></span></span>
+</div>
+<p class="sr" id="live" role="status" aria-live="polite"></p>
+</main>
+<script id="engine">
+'use strict';
+const Game = (() => {
+  const W=320,H=180,TILE=8,DT=1/60;
+  // Movement reference: https://github.com/NoelFB/Celeste/blob/1b0ce45c75e05649ae91b44a8bb6b196684e4352/Source/Player/Player.cs (native pixels).
+  const P={run:90,accel:1000,reduce:400,air:.65,jump:-105,jumpBoost:40,varJump:.2,gravity:900,halfGravity:40,maxFall:160,dash:240,dashTime:.15,endDash:160,wallJump:130,wallForce:.16,grace:.1,inputBuffer:.08,wallCheck:3,wallBounceCheck:5,climbCheck:2,climbUpCheck:2,climbSlip:30,climb:-45,climbDown:80,climbStillCost:10,climbUpCost:100/2.2,climbHop:100,stamina:110};
+  const colors=[{name:'紅',hex:'#ff8f91',fill:'#833e54',edge:'#b35c70',mark:'Ⅰ'},{name:'藍',hex:'#79c9ff',fill:'#356487',edge:'#4d91b3',mark:'Ⅱ'},{name:'綠',hex:'#78d892',fill:'#316d4a',edge:'#56a271',mark:'Ⅲ'}];
+  const neutral={hex:'#a9b8c5',fill:'#3c4a57',edge:'#697d8e',mark:'◇'};
+  const phaseMasks={R:1,B:2,G:4,Y:5,M:3,C:6,W:7,'#':7};
+  const surfaces={R:colors[0],B:colors[1],G:colors[2],Y:{hex:'#f1dc81',fill:'#796d38',edge:'#b3a35b'},M:{hex:'#d7a3ed',fill:'#684c7e',edge:'#a17cb9'},C:{hex:'#85e4dc',fill:'#386f78',edge:'#5ba6ac'},W:{hex:'#edf1ec',fill:'#666f73',edge:'#aab5b4'},'#':neutral};
+  const activeInPhase=(b,phase)=>b.phaseMask===undefined?(b.phase<0||b.phase===phase):!!(b.phaseMask&(1<<phase));
+  const tileMap=/* LEVEL_DATA */{"tileSize":8,"columns":40,"rows":23,"rooms":[{"name":"紅刺","phase":0,"facing":1,"exitDir":1,"spawn":[3,20],"goal":[25,17],"goalPhase":2,"terrain":["........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................",".....................GGGGGGG............",".....................GGGGGGG............","........................................",".RRRRRRRBBBBBBBBB.......................",".RRRRRRRBBBBBBBBB.......................",".................GGGGGGGGGGG............"],"spikes":[{"x":8,"y":19,"length":9,"dir":"up","color":"R"},{"x":17,"y":21,"length":11,"dir":"up","color":"G"}]},{"name":"頭頂","phase":0,"facing":1,"exitDir":1,"spawn":[3,20],"goal":[23,13],"goalPhase":0,"terrain":["........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","....................RRRRRR..............","........................................","........GGGGGG..........................","........................................","........................................","...........BBBBBBBBB....................","...........BBBBBBBBB....................",".RRRRRRR................................",".RRRRRRR................................","........................................"],"spikes":[{"x":8,"y":16,"length":6,"dir":"down","color":"G"},{"x":20,"y":14,"length":6,"dir":"down","color":"R"}]},{"name":"保藍","phase":0,"facing":1,"exitDir":1,"spawn":[3,20],"goal":[33,16],"goalPhase":2,"terrain":["..................R.....................","..................R.....................","..................R.....................","..................R.....................","..................R.....................","..................R.....................","..................R.....................","..................R.....................","..................R.....................","..................R.....................","..................R.....................","..................R.....................","..................R.....................","..................R.....................","..................R.....................","..................R.....................","..................R...........GGGGGG....","..................R...........GGGGGG....",".........BBBBBB...R.....................",".........BBBBBB...R..BBBBBB.............",".RRRRRRR..........R..BBBBBB.............",".RRRRRRR..........R.....................","..................R....................."],"spikes":[{"x":17,"y":0,"length":23,"dir":"left","color":"Y"},{"x":19,"y":0,"length":23,"dir":"right","color":"Y"}]},{"name":"色帶","phase":0,"facing":1,"exitDir":1,"spawn":[3,20],"goal":[20,7],"goalPhase":0,"terrain":["............B...........................","............B...........................","............B...........................","............B...........................","............B...........................","............B...........................","............B...........................","............B....RRRRRRR................","............B...........................","............B...........................","...GGGGGG...B...........................","............B...........................","............B...........................","............B...........................","............B...........................","............B...........................","............B...........................","............B...........................","........................................","........................................",".RRRRRRR................................",".RRRRRRR................................","........................................"],"spikes":[{"x":11,"y":12,"length":6,"dir":"left","color":"G"},{"x":13,"y":8,"length":5,"dir":"right","color":"R"}]},{"name":"雙門","phase":0,"facing":1,"exitDir":1,"spawn":[3,18],"goal":[35,18],"goalPhase":0,"terrain":["........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","......................GGGG..............","......................GGGG..............",".........BBBBB..........................",".........BBBBB..........................",".RRRRRR.........................RRRRRR..",".RRRRRR.........................RRRRRR..","........................................","........................................","........................................"],"spikes":[{"x":17,"y":9,"length":11,"dir":"left","color":"M"},{"x":18,"y":9,"length":11,"dir":"right","color":"M"},{"x":28,"y":9,"length":11,"dir":"left","color":"C"},{"x":29,"y":9,"length":11,"dir":"right","color":"C"}]},{"name":"五跳","phase":0,"facing":1,"exitDir":1,"spawn":[3,20],"goal":[25,10],"goalPhase":2,"terrain":["........G....B.....R....................","........G....B.....R....................","........G....B.....R....................","........G....B.....R....................","........G....B.....R....................","........G....B.....R....................","........G....B.....R....................","........G....B.....R....................","........G....B.....R....................","........G....B.....R....................","........G....B.....R..GGGGGG............","........G....B.....R..GGGGGG............",".............B.....R....................",".............B.....R....................",".............B.....R....................",".............B..........................",".............B..........................",".............B..........................",".............B..........................",".............B..........................",".RRRRRRRR...............................",".RRRRRRRR...............................","........................................"],"spikes":[{"x":12,"y":14,"length":6,"dir":"left","color":"G"},{"x":12,"y":0,"length":10,"dir":"left","color":"C"},{"x":14,"y":10,"length":10,"dir":"right","color":"Y"},{"x":20,"y":7,"length":8,"dir":"right","color":"G"}]},{"name":"換色台","phase":0,"facing":1,"exitDir":1,"spawn":[3,15],"goal":[37,14],"goalPhase":0,"terrain":["WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW","WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW","WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW","WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","........................................","...................................RRRRR",".RRRRRRR...........................RRRRR",".RRRRRRR..................GGGGG.........","..........................GGGGG.........",".............MMMMMMM....................",".............MMMMMMM....................","........................................","........................................","........................................"],"spikes":[{"x":9,"y":7,"length":15,"dir":"left","color":"C"},{"x":10,"y":7,"length":15,"dir":"right","color":"C"},{"x":13,"y":17,"length":3,"dir":"up","color":"C"},{"x":22,"y":7,"length":11,"dir":"left","color":"M"},{"x":23,"y":7,"length":11,"dir":"right","color":"M"},{"x":32,"y":7,"length":11,"dir":"left","color":"C"},{"x":33,"y":7,"length":11,"dir":"right","color":"C"}]},{"name":"歸途","phase":0,"facing":1,"exitDir":-1,"spawn":[3,20],"goal":[11,4],"goalPhase":2,"terrain":["......................................GG","......................................GG","......................................GG","......................................GG","........GGGGG.........................GG","........GGGGG.....BBBBB...............GG","..................BBBBB...............GG","......................................GG","........................RRRRRRRRRR....GG","........................RRRRRRRRRR....GG","......................................GG","WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW...GG","WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW...GG",".................WWWWWWWW.............GG",".................WWWWWWWW.............GG",".................WWWWWWWW.............GG","......................................GG","......................................GG",".........BBBBB...WWWWWWWWBBBBBBBBBBBB.GG",".........BBBBB...WWWWWWWWBBBBBBBBBBBB.GG",".RRRRRR..........WWWWWWWW...............",".RRRRRR..........WWWWWWWW...............",".................WWWWWWWW..............."],"spikes":[{"x":17,"y":17,"length":8,"dir":"up","color":"Y"},{"x":17,"y":16,"length":8,"dir":"down","color":"Y"},{"x":37,"y":12,"length":6,"dir":"left","color":"R"},{"x":0,"y":10,"length":35,"dir":"up","color":"W"},{"x":35,"y":11,"length":2,"dir":"right","color":"W"},{"x":14,"y":0,"length":11,"dir":"left","color":"M"},{"x":15,"y":0,"length":11,"dir":"right","color":"M"}]}]}/* END_LEVEL_DATA */;
+  if(tileMap.tileSize!==TILE||tileMap.columns!==W/TILE||tileMap.rows!==Math.ceil(H/TILE)||!Array.isArray(tileMap.rooms)||!tileMap.rooms.length)throw Error('Invalid tile map');
+  function compileRoom(room){
+    const validPoint=p=>Array.isArray(p)&&p.length===2&&p.every(Number.isInteger)&&p[0]>=0&&p[0]<tileMap.columns&&p[1]>=0&&p[1]<tileMap.rows;
+    if(!Array.isArray(room.terrain)||room.terrain.length!==tileMap.rows||room.terrain.some(row=>typeof row!=='string'||row.length!==tileMap.columns||/[^.RBGYMCW#]/.test(row))||!validPoint(room.spawn)||!validPoint(room.goal)||![0,1,2].includes(room.phase)||![0,1,2].includes(room.goalPhase))throw Error('Invalid tile room: '+room.name);
+    const blocks=[],phases={R:0,B:1,G:2,Y:3,M:3,C:3,W:-1,'#':-1};let previous=new Map();
+    room.terrain.forEach((row,y)=>{
+      const current=new Map();
+      for(let x=0;x<row.length;){
+        const start=x,c=row[x++];while(x<row.length&&row[x]===c)x++;
+        if(c==='.')continue;
+        const key=[start,x-start,c].join(','),above=previous.get(key);
+        if(above){above.h+=TILE;current.set(key,above);}
+        else{const block={x:start*TILE,y:y*TILE,w:(x-start)*TILE,h:TILE,phase:phases[c],phaseMask:phaseMasks[c],tile:c};blocks.push(block);current.set(key,block);}
+      }
+      previous=current;
+    });
+    const m=room.mover;
+    if(m&&((m.kind!==undefined&&m.kind!=='return')||!Array.isArray(m.nodes)||m.nodes.length!==(m.kind==='return'?2:4)||!m.nodes.every(p=>validPoint(p)&&p[0]+m.w<=tileMap.columns&&p[1]+m.h<=tileMap.rows)||!Number.isInteger(m.w)||m.w<1||!Number.isInteger(m.h)||m.h<1||!Number.isInteger(m.start)||m.start<0||m.start>=m.nodes.length||new Set(m.nodes.map(p=>p.join(','))).size!==m.nodes.length||(m.kind==='return'&&(m.nodes[0][1]!==m.nodes[1][1]||m.nodes[0][0]===m.nodes[1][0]))))throw Error('Invalid tile mover: '+room.name);
+    if(room.spikes!==undefined&&(!Array.isArray(room.spikes)||room.spikes.some(h=>!h||!Number.isInteger(h.x)||!Number.isInteger(h.y)||!Number.isInteger(h.length)||h.length<1||!['up','down','left','right'].includes(h.dir)||typeof h.color!=='string'||!Object.hasOwn(phaseMasks,h.color)||h.color==='#'||h.x<0||h.y<0||h.x+(h.dir==='up'||h.dir==='down'?h.length:1)>tileMap.columns||h.y+(h.dir==='left'||h.dir==='right'?h.length:1)>tileMap.rows)))throw Error('Invalid tile spikes: '+room.name);
+    const spikes=(room.spikes||[]).map(h=>{const horizontal=h.dir==='up'||h.dir==='down';return {...h,x:h.x*TILE,y:h.y*TILE,w:(horizontal?h.length:1)*TILE,h:(horizontal?1:h.length)*TILE,phaseMask:phaseMasks[h.color]};});
+    return {...room,spawn:[room.spawn[0]*TILE,room.spawn[1]*TILE-11],goal:[room.goal[0]*TILE,room.goal[1]*TILE-16],blocks,spikes,mover:m?{...m,nodes:m.nodes.map(p=>p.map(v=>v*TILE)),w:m.w*TILE,h:m.h*TILE}:undefined};
+  }
+  const levels=tileMap.rooms.map(compileRoom);
+  const palettes=levels.map(()=>colors);
+  const overlap=(a,b)=>a.x<b.x+b.w&&a.x+a.w>b.x&&a.y<b.y+b.h&&a.y+a.h>b.y;
+  const approach=(v,target,amount)=>v<target?Math.min(v+amount,target):Math.max(v-amount,target);
+  function create(level=0){const s={level,phase:0,time:0,totalTime:0,deaths:0,dashes:0,jumps:0,won:false,respawn:0,flash:0,shake:0,freeze:0,particles:[],trails:[],events:[],blocked:new Set()};reset(s);return s;}
+  function reset(s){
+    const l=levels[s.level];s.phase=l.phase;s.won=false;s.respawn=0;s.freeze=0;s.blocked.clear();
+    s.player={x:l.spawn[0],y:l.spawn[1],w:8,h:11,vx:0,vy:0,facing:l.facing,grounded:true,coyote:P.grace,buffer:0,dashBuffer:0,dashAttack:0,remX:0,remY:0,dash:1,dashTime:0,dashCooldown:0,dx:0,dy:0,wall:0,wallLock:0,forceX:0,slide:0,maxFall:P.maxFall,climbWait:0,climbMove:0,hopMover:false,hopX:0,wallBoost:0,boostDir:0,retention:0,retained:0,dashRefill:0,dashPending:false,dashRide:false,dashStartedOnGround:false,beforeDash:0,ducking:false,autoJump:false,varTime:0,varSpeed:P.jump,stamina:P.stamina,climbing:false};
+    s.trails=[];s.flash=.08;
+    s.mover=l.mover?{...l.mover,index:l.mover.start,x:l.mover.nodes[l.mover.start][0],y:l.mover.nodes[l.mover.start][1],moving:false,pending:0,elapsed:0}:null;
+  }
+  function solid(s){const blocks=levels[s.level].blocks.filter((b,i)=>activeInPhase(b,s.phase)&&!s.blocked.has(i));if(s.mover)blocks.push(s.mover);return blocks;}
+  function wallAt(p,blocks,preferred=p.facing,reach=P.wallCheck){
+    for(const dir of [preferred,-preferred])for(const b of blocks){
+      if(p.y+p.h<=b.y||p.y>=b.y+b.h)continue;
+      const distance=dir>0?b.x-(p.x+p.w):p.x-(b.x+b.w);
+      if(distance>=-.01&&distance<reach)return {dir,block:b};
+    }
+    return null;
+  }
+  function onGround(p,blocks){return blocks.some(b=>overlap({...p,y:p.y+1},b)&&p.y+p.h<=b.y);}
+  function burst(s,x,y,color,count=8){for(let i=0;i<count;i++){const a=Math.random()*Math.PI*2,v=8+Math.random()*33;s.particles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,life:.3+Math.random()*.2,color});}}
+  function kill(s){if(s.respawn||s.won)return;s.deaths++;s.respawn=.28;s.shake=.12;s.events.push('death');burst(s,s.player.x+4,s.player.y+5,'#ffe6c2',18);}
+  function spikeBox(h){return {x:h.x+(h.dir==='left'?5:0),y:h.y+(h.dir==='up'?5:0),w:h.dir==='left'||h.dir==='right'?3:h.w,h:h.dir==='up'||h.dir==='down'?3:h.h};}
+  function checkSpikes(s,from=s.player){
+    const p=s.player;
+    for(const h of levels[s.level].spikes||[]){
+      if(!activeInPhase(h,s.phase))continue;
+      const b=spikeBox(h);let enter=0,leave=1;
+      for(const [axis,size] of [['x','w'],['y','h']]){
+        const delta=p[axis]-from[axis],lo=b[axis]-p[size],hi=b[axis]+b[size];
+        if(!delta){if(p[axis]<=lo||p[axis]>=hi){leave=0;break;}}
+        else{const a=(lo-from[axis])/delta,z=(hi-from[axis])/delta;enter=Math.max(enter,Math.min(a,z));leave=Math.min(leave,Math.max(a,z));}
+      }
+      if(enter<leave){kill(s);return true;}
+    }
+    return false;
+  }
+  function shift(s){
+    const previous=s.phase;s.phase=(s.phase+1)%3;s.flash=.08;
+    levels[s.level].blocks.forEach((b,i)=>{if(!activeInPhase(b,previous)&&activeInPhase(b,s.phase)&&overlap(s.player,b))s.blocked.add(i);});
+    burst(s,s.player.x+4,s.player.y+5,palettes[s.level][s.phase].hex);
+    checkSpikes(s);
+  }
+  function duck(p,blocks,value){
+    if(p.ducking===value)return true;
+    const h=value?6:11,y=p.y+p.h-h;
+    if(!value&&blocks.some(b=>overlap({...p,y,h},b)))return false;
+    p.y=y;p.h=h;p.ducking=value;return true;
+  }
+  function pixelRound(value){
+    const floor=Math.floor(value),fraction=value-floor;
+    return fraction===.5?(floor%2===0?floor:floor+1):Math.round(value);
+  }
+  function jump(s,wall,input){
+    const p=s.player,upDash=p.dashAttack>0&&p.dx===0&&p.dy===-1;
+    const climbJump=wall&&p.dashTime<=0&&p.stamina>0&&input.x!==-wall&&(p.climbing||(input.grab&&p.facing===wall));
+    let speed=P.jump,variable=P.varJump;
+    const crouched=p.ducking;
+    if((wall||(p.dashTime>0&&p.dy===0))&&!duck(p,solid(s),false))return;
+    if(p.climbing)p.retention=0;if(p.climbing||p.dashTime>0)p.maxFall=P.maxFall;p.wallBoost=0;p.autoJump=false;
+    if(wall&&!climbJump){
+      p.vx=-wall*(upDash?170:P.wallJump);p.facing=-wall;
+      if(upDash){speed=-160;variable=.25;}
+      else if(input.x){p.forceX=-wall;p.wallLock=P.wallForce;}
+    }else{
+      if(!wall&&p.dashTime>0&&p.dy===0){p.vx=p.facing*260;if(crouched){p.vx*=1.25;speed*=.5;}}
+      else p.vx+=input.x*P.jumpBoost;
+      if(climbJump){if(!p.grounded)p.stamina-=27.5;if(!input.x){p.wallBoost=.2;p.boostDir=-wall;}}
+    }
+    p.dashTime=0;p.dashAttack=0;p.dashPending=false;p.vy=speed;p.varSpeed=speed;p.varTime=variable;p.grounded=false;p.coyote=0;p.buffer=0;p.climbing=false;p.slide=0;p.hopX=0;
+    p.hopMover=false;p.dashRide=false;s.jumps++;shift(s);s.events.push('jump');burst(s,p.x+4,p.y+11,'#dce7ee',4);
+  }
+  const collides=(p,blocks,x=0,y=0)=>blocks.some(b=>overlap({...p,x:p.x+x,y:p.y+y},b));
+  function slipCheck(p,blocks,addY=0){
+    const x=p.facing>0?p.x+p.w:p.x-1,y=p.y+4+addY;
+    return !blocks.some(b=>[y,y-4+addY].some(at=>x>=b.x&&x<b.x+b.w&&at>=b.y&&at<b.y+b.h));
+  }
+  function climbHop(s,blocks){
+    const p=s.player,touching=collides(p,blocks,p.facing);
+    p.hopX=touching?p.facing:0;p.hopMover=!!s.mover&&collides(p,[s.mover],p.facing);
+    p.vx=touching?0:p.facing*P.climbHop;p.vy=Math.min(p.vy,-120);p.forceX=0;p.wallLock=.2;
+    p.climbing=false;p.retention=0;p.maxFall=P.maxFall;
+  }
+  function activatePlatform(s){
+    const m=s.mover;if(!m)return;
+    if(m.kind!=='return'){m.pending++;return;}
+    m.fromX=m.x;m.fromY=m.y;m.index=1;m.elapsed=0;m.hold=.2;
+    m.duration=.2*Math.abs(m.nodes[1][0]-m.x)/Math.abs(m.nodes[1][0]-m.nodes[0][0]);m.moving=m.duration>1e-9;
+  }
+  function movePlatform(s,dt,input){
+    const m=s.mover;if(!m)return;
+    if(m.kind==='return'){
+      if(!m.moving&&m.index===1){m.hold=Math.max(0,m.hold-dt);if(m.hold>1e-9)return;m.fromX=m.x;m.fromY=m.y;m.index=0;m.elapsed=0;m.duration=1.2*Math.abs(m.x-m.nodes[0][0])/Math.abs(m.nodes[1][0]-m.nodes[0][0]);m.moving=m.duration>1e-9;}
+    }else if(!m.moving&&m.pending){m.pending--;m.fromX=m.x;m.fromY=m.y;m.index=(m.index+1)%m.nodes.length;m.elapsed=0;m.duration=.3;m.moving=true;}
+    if(!m.moving)return;
+    m.elapsed=Math.min(m.duration,m.elapsed+dt);const t=m.elapsed/m.duration,[tx,ty]=m.nodes[m.index];
+    const dx=pixelRound(m.fromX+(tx-m.fromX)*t)-m.x,dy=pixelRound(m.fromY+(ty-m.fromY)*t)-m.y;
+    const p=s.player,rider=p.vy>=0&&Math.abs(p.y+p.h-m.y)<.6&&p.x+p.w>m.x&&p.x<m.x+m.w;
+    const clinger=(p.climbing&&input.grab&&p.stamina>0&&p.dashTime<=0&&collides(p,[m],p.facing))||(p.hopMover&&p.wallLock>0);
+    const steps=Math.max(1,Math.ceil(Math.max(Math.abs(dx),Math.abs(dy))));
+    const walls=levels[s.level].blocks.filter((b,i)=>activeInPhase(b,s.phase)&&!s.blocked.has(i));
+    for(let i=0;i<steps;i++){
+      const before={x:p.x,y:p.y};
+      m.x+=dx/steps;m.y+=dy/steps;
+      if(rider||clinger){p.x+=dx/steps;p.y+=dy/steps;}
+      else if(overlap(p,m)){if(dx>0)p.x=m.x+m.w;else if(dx<0)p.x=m.x-p.w;else if(dy>0)p.y=m.y+m.h;else if(dy<0)p.y=m.y-p.h;}
+      if(checkSpikes(s,before)||walls.some(b=>overlap(p,b))||p.x<0||p.x+p.w>W){kill(s);break;}
+    }
+    if(t>=1){m.moving=false;if(m.kind==='return'&&m.index===1)m.hold=.2;}
+    return dx;
+  }
+  function step(s,input,dt=DT){
+    if(s.won)return;
+    s.time+=dt;s.totalTime+=dt;s.flash=Math.max(0,s.flash-dt);s.shake=Math.max(0,s.shake-dt);
+    s.particles=s.particles.filter(p=>{p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=67*dt;return (p.life-=dt)>0;});s.trails=s.trails.filter(p=>(p.life-=dt)>0);
+    if(s.respawn){s.respawn=Math.max(0,s.respawn-dt);if(!s.respawn)reset(s);return;}
+    const p=s.player,l=levels[s.level];
+    if(checkSpikes(s))return;
+    p.buffer=input.jump?P.inputBuffer:input.jumpHeld?Math.max(0,p.buffer-dt):0;
+    p.dashBuffer=input.dash?P.inputBuffer:input.dashHeld?Math.max(0,p.dashBuffer-dt):0;
+    if(s.freeze>1e-9){s.freeze=Math.max(0,s.freeze-dt);return;}
+    for(const i of s.blocked)if(!overlap(p,l.blocks[i]))s.blocked.delete(i);
+    const platformDX=movePlatform(s,dt,input)||0;if(s.respawn)return;
+    p.dashAttack=Math.max(0,p.dashAttack-dt);
+    let blocks=solid(s),contact=wallAt(p,blocks,input.x||p.facing,p.dashAttack>0&&p.dx===0&&p.dy===-1?P.wallBounceCheck:P.wallCheck);
+    p.wall=contact?.dir||0;p.grounded=p.vy>=0&&onGround(p,blocks);
+    const move=p.wallLock>0?p.forceX:input.x;
+    p.coyote=p.grounded?P.grace:Math.max(0,Math.fround(Math.fround(p.coyote)-Math.fround(dt)));if(p.coyote<1e-8)p.coyote=0;p.wallLock=Math.max(0,p.wallLock-dt);if(!p.wallLock)p.hopMover=false;p.dashCooldown=Math.max(0,p.dashCooldown-dt);
+    p.varTime=Math.max(0,p.varTime-dt);p.wallBoost=Math.max(0,p.wallBoost-dt);
+    const refillReady=p.dashRefill<=0;p.dashRefill=Math.max(0,p.dashRefill-dt);
+    if(p.grounded){if(!p.climbing)p.autoJump=false;p.stamina=P.stamina;p.slide=0;if(refillReady&&!p.dashPending){if(!p.dash)s.events.push('refill');p.dash=1;}}
+    if(p.wallBoost>0&&input.x===p.boostDir){p.vx=P.wallJump*input.x;p.stamina=Math.min(P.stamina,p.stamina+27.5);p.wallBoost=0;}
+    if(p.retention>0){
+      if(Math.sign(p.vx)===-Math.sign(p.retained))p.retention=0;
+      else if(!wallAt(p,blocks,Math.sign(p.retained),1)){p.vx=p.retained;p.retention=0;}
+      else p.retention=Math.max(0,p.retention-dt);
+    }
+    if(p.hopX){
+      if(Math.sign(p.vx)===-p.hopX||p.vy>0)p.hopX=0;
+      else if(!wallAt(p,blocks,p.hopX,1)){p.vx=p.hopX*P.climbHop;p.hopX=0;}
+    }
+    if(move&&!p.climbing&&p.dashTime<=0)p.facing=move;
+    // ClimbBegin runs on entry; ClimbUpdate processes buffered actions next frame.
+    let enteredClimb=false;
+    if(!p.climbing&&p.dashTime<=0&&input.grab&&p.stamina+(p.wallBoost>0?27.5:0)>=20&&!p.ducking&&p.vy>=0&&Math.sign(p.vx)!==-p.facing){
+      let correction=null;
+      for(let y=0;y<=P.climbUpCheck;y++){
+        if(y&&input.y===1)break;
+        if(!collides(p,blocks,0,-y)&&collides(p,blocks,p.facing*P.climbCheck,-y)){correction=y;break;}
+      }
+      if(correction!==null){
+        const before={x:p.x,y:p.y};enteredClimb=true;p.y-=correction;p.climbing=true;p.autoJump=false;p.vx=0;p.vy*=.2;p.climbWait=.1;p.climbMove=0;p.wallBoost=0;p.slide=0;p.retention=0;p.hopX=0;p.hopMover=false;
+        for(let i=0;i<P.climbCheck&&!collides(p,blocks,p.facing);i++)p.x+=p.facing;
+        if(checkSpikes(s,before))return;
+      }
+    }
+    if(!enteredClimb&&p.dashBuffer>0&&!(p.climbing&&p.buffer>0)&&p.dash&&p.dashTime<=0&&p.dashCooldown<=0){
+      // Monocle publishes aim on the next update and resumes once more after its .15 s wait.
+      if(p.climbing)p.retention=0;p.dashStartedOnGround=p.grounded;p.beforeDash=p.vx;p.vx=0;p.vy=0;p.dx=0;p.dy=0;p.dashTime=P.dashTime+2*dt;p.dashCooldown=.2;p.dashRefill=.1;p.dashAttack=.3;p.dashBuffer=0;p.dash=0;p.varTime=0;p.climbing=false;p.hopMover=false;p.wallLock=0;p.wallBoost=0;p.dashPending=true;p.dashRide=false;p.slide=0;
+      s.dashes++;activatePlatform(s);s.freeze=.05;s.events.push('dash');return;
+    }
+    if(p.dashTime>0){
+      if(p.buffer>0&&(contact||(p.coyote>0&&p.dy===0)))jump(s,p.coyote>0&&p.dy===0?0:contact.dir,input);
+      else if(Math.floor(s.time/DT)%3===0)s.trails.push({x:p.x,y:p.y,life:.16,phase:s.phase});
+    }else if(p.climbing){
+      if(!enteredClimb){
+        p.climbWait-=dt;
+        if(p.buffer>0)jump(s,p.facing,input);
+        else if(!input.grab){p.climbing=false;p.retention=0;p.maxFall=P.maxFall;}
+        else if(!collides(p,blocks,p.facing)){if(p.vy<0)climbHop(s,blocks);else{p.climbing=false;p.retention=0;p.maxFall=P.maxFall;}}
+        else{
+          let target=0,trySlip=p.climbWait>0;
+          if(p.climbWait<=0){
+            if(input.y<0){
+              target=P.climb;
+              if(collides(p,blocks,0,-1)||(collides(p,blocks,0,-6)&&slipCheck(p,blocks,-1))){if(p.vy<0)p.vy=0;target=0;trySlip=true;}
+              else if(slipCheck(p,blocks)){climbHop(s,blocks);}
+            }else if(input.y>0){target=P.climbDown;if(p.grounded){if(p.vy>0)p.vy=0;target=0;}}
+            else trySlip=true;
+          }
+          if(p.climbing){
+            p.climbMove=Math.sign(target);
+            if(trySlip&&slipCheck(p,blocks))target=P.climbSlip;
+            p.vx=0;p.vy=approach(p.vy,target,900*dt);
+            if(input.y!==1&&p.vy>0&&!collides(p,blocks,p.facing,1))p.vy=0;
+            if(p.climbWait<=0)p.stamina-=(p.climbMove<0?P.climbUpCost:p.climbMove===0?P.climbStillCost:0)*dt;
+            if(p.stamina<=0){p.climbing=false;p.retention=0;p.maxFall=P.maxFall;}
+          }
+        }
+      }
+    }else{
+      if(p.grounded)duck(p,blocks,input.y===1);
+      const mult=p.grounded?1:P.air;
+      const acceleration=Math.abs(p.vx)>P.run&&Math.sign(p.vx)===move?P.reduce:P.accel;
+      p.vx=p.ducking&&p.grounded?approach(p.vx,0,500*dt):approach(p.vx,move*P.run,acceleration*mult*dt);
+      if(move)p.facing=move;
+      p.maxFall=approach(p.maxFall,input.y>0&&p.vy>=P.maxFall?240:P.maxFall,300*dt);
+      let maxFall=p.maxFall;
+      const slide=wallAt(p,blocks,p.facing,1);
+      if(slide?.dir===p.facing&&(move===p.facing||(!move&&input.grab))&&p.vy>=0&&input.y!==1&&p.slide<1.2){maxFall=20+(P.maxFall-20)*p.slide/1.2;p.slide+=dt;}
+      if(!p.grounded){const gravity=Math.abs(p.vy)<P.halfGravity&&(input.jumpHeld||p.autoJump)?P.gravity*.5:P.gravity;p.vy=approach(p.vy,maxFall,gravity*dt);}
+      if(p.varTime>1e-9){if(input.jumpHeld)p.vy=Math.min(p.vy,p.varSpeed);else p.varTime=0;}
+      if(p.buffer>0&&(p.coyote>0||contact))jump(s,p.coyote>0?0:contact.dir,{...input,x:move});
+    }
+    if(s.respawn)return;
+    if(p.dashPending){
+      let dx=input.x,dy=input.y;if(!dx&&!dy)dx=p.facing;const length=Math.hypot(dx,dy);
+      p.dx=dx/length;p.dy=dy/length;p.vx=p.dx*P.dash;p.vy=p.dy*P.dash;
+      if(Math.sign(p.beforeDash)===Math.sign(p.vx)&&Math.abs(p.beforeDash)>Math.abs(p.vx))p.vx=p.beforeDash;
+      if(dx)p.facing=Math.sign(dx);
+      if(p.grounded&&p.dx&&p.dy>0){p.dx=Math.sign(p.dx);p.dy=0;p.vy=0;p.vx*=1.2;duck(p,blocks,true);}
+      p.dashPending=false;
+    }
+    // A same-direction dash on top of a moving platform keeps its boarding offset.
+    const onMover=!!(s.mover&&p.grounded&&p.y+p.h===s.mover.y&&p.x+p.w>s.mover.x&&p.x<s.mover.x+s.mover.w);
+    p.dashRide=p.dashTime>0&&p.dy===0&&p.dx!==0&&onMover&&(Math.sign(platformDX)===Math.sign(p.dx)||(p.dashRide&&platformDX===0&&!s.mover.moving));
+    if(p.dashTime>0){p.dashTime=Math.max(0,p.dashTime-dt);if(p.dashTime<1e-9){p.dashTime=0;p.maxFall=P.maxFall;p.autoJump=true;if(p.dy<=0){p.vx=p.dx*P.endDash;p.vy=p.dy*P.endDash*(p.dy<0?.75:1);}}}
+    if(p.vy>0&&!p.grounded&&p.ducking)duck(p,solid(s),false);
+    p.remX+=(p.dashRide?0:p.vx)*dt;const moveX=pixelRound(p.remX);p.remX-=moveX;
+    let hitX=false;
+    for(let n=0;n<Math.abs(moveX)&&!hitX;n++){
+      const before={x:p.x,y:p.y};
+      blocks=solid(s);const vx=Math.sign(moveX);p.x+=vx;
+      for(const b of blocks)if(overlap(p,b)){
+        p.remX=0;let corrected=false;
+        if(p.dashTime>0&&p.dy===0){for(let offset=1;offset<=4&&!corrected;offset++)for(const sign of [1,-1]){const q={...p,y:p.y+offset*sign};if(!blocks.some(b=>overlap(q,b))){p.y=q.y;corrected=true;break;}}}
+        if(!corrected){p.x=vx>0?b.x-p.w:b.x+b.w;if(p.retention<=0){p.retained=p.vx;p.retention=.06;}p.vx=0;p.dashAttack=0;hitX=true;}
+      }
+      p.x=Math.max(0,Math.min(W-p.w,p.x));
+      if(checkSpikes(s,before))return;
+    }
+    p.remY+=p.vy*dt;const moveY=pixelRound(p.remY);p.remY-=moveY;
+    let hitY=false;
+    for(let n=0;n<Math.abs(moveY)&&!hitY;n++){
+      const before={x:p.x,y:p.y};
+      blocks=solid(s);const vy=Math.sign(moveY);p.y+=vy;
+      for(const b of blocks)if(overlap(p,b)){
+        p.remY=0;let corrected=false;
+        if(vy>0&&p.dashTime>0&&!p.dashStartedOnGround){for(let offset=1;offset<=4&&!corrected;offset++)for(const sign of [-1,1]){if(p.vx*sign<0)continue;const q={...p,x:p.x+offset*sign};if(q.x>=0&&q.x+q.w<=W&&!blocks.some(b=>overlap(q,b))){p.x=q.x;corrected=true;break;}}}
+        if(vy<0){for(let offset=1;offset<=4&&!corrected;offset++)for(const sign of [-1,1]){if(p.vx*sign<0)continue;const q={...p,x:p.x+offset*sign};if(q.x>=0&&q.x+q.w<=W&&!blocks.some(b=>overlap(q,b))){p.x=q.x;corrected=true;break;}}}
+        if(!corrected){p.y=vy>0?b.y-p.h:b.y+b.h;if(vy>0&&p.dashTime>0&&p.dx&&p.dy>0){p.dx=Math.sign(p.dx);p.dy=0;p.vx*=1.2;duck(p,blocks,true);}p.vy=0;p.dashAttack=0;hitY=true;if(vy>0||p.varTime<P.varJump-.05)p.varTime=0;}
+      }
+      if(checkSpikes(s,before))return;
+    }
+    if(p.y<0){p.y=0;p.vy=Math.max(0,p.vy);p.varTime=0;p.remY=0;p.dashAttack=0;}
+    blocks=solid(s);p.grounded=p.vy>=0&&onGround(p,blocks);p.wall=wallAt(p,blocks,input.x||p.facing)?.dir||0;
+    if(p.grounded){if(p.dashRefill<=0&&p.dashTime<=0){if(!p.dash)s.events.push('refill');p.dash=1;}}
+    if(p.y>H+14)kill(s);
+    if(s.respawn||checkSpikes(s))return;
+    if(s.phase===l.goalPhase&&overlap(p,{x:l.goal[0],y:l.goal[1],w:8,h:16})){s.won=true;s.events.push('win');}
+  }
+  return {W,H,TILE,DT,P,tileMap,compileRoom,colors,neutral,phaseMasks,surfaces,activeInPhase,spikeBox,palettes,levels,create,reset,step,solid,overlap,wallAt};
+})();
+</script>
+<script>
+(() => {
+  const $=id=>document.getElementById(id),canvas=$('game'),ctx=canvas.getContext('2d'),stage=$('stage'),picker=$('level'),overlay=$('overlay');
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,count=Game.levels.length,width=Math.max(2,String(count).length);
+  const num=i=>String(i).padStart(width,'0');
+  let state=Game.create(),mode='intro',last=0,accumulator=0,transition=null,completed=new Set(),pickerPointer=false;
+  const held=new Set(),sources=new Map();let jumpQueued=false,dashQueued=false;
+  const jumpKeys=['Space','KeyZ'],dashKeys=['KeyX'],grabKeys=['KeyC','ShiftLeft','ShiftRight'];
+  const allKeys=new Set(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','KeyA','KeyD','KeyW','KeyS',...jumpKeys,...dashKeys,...grabKeys,'KeyR','Escape']);
+
+  Game.levels.forEach((l,i)=>picker.add(new Option(`${num(i+1)}　${l.name}`,i)));
+  $('total').textContent='/ '+num(count);
+  [...$('cycle').children].forEach((el,i)=>el.style.background=Game.colors[i].hex);
+
+  function clearInput(){held.clear();sources.clear();jumpQueued=false;dashQueued=false;}
+  function announce(text){$('live').textContent=text;}
+  function syncLevel(){
+    picker.value=String(state.level);
+    [...picker.options].forEach((o,i)=>o.textContent=`${num(i+1)}　${Game.levels[i].name}${completed.has(i)?'　✓':''}`);
+  }
+  function focusStage(){stage.focus({preventScroll:true});}
+  function load(index,focus=true){
+    transition=null;accumulator=0;state=Game.create(index);mode='playing';clearInput();overlay.hidden=true;syncLevel();
+    if(focus)focusStage();announce(`第 ${index+1} 關，${Game.levels[index].name}`);
+  }
+  function showOverlay(title,text,primary,secondary,keys){
+    $('ov-title').textContent=title;$('ov-text').textContent=text;$('ov-primary').textContent=primary;
+    $('ov-secondary').hidden=!secondary;$('keys').hidden=!keys;overlay.hidden=false;clearInput();$('ov-primary').focus({preventScroll:true});
+  }
+  function pause(){
+    if(mode==='playing'||mode==='transition'){mode='paused';showOverlay('暫停','跳躍換色，衝刺保色','繼續',true,true);announce('已暫停');}
+    else if(mode==='paused')resume();
+  }
+  function resume(){mode=transition?'transition':'playing';clearInput();overlay.hidden=true;focusStage();announce('繼續');}
+  const clock=t=>{const s=Math.floor(t);return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;};
+
+  $('ov-primary').onclick=()=>{if(mode==='intro')load(state.level);else if(mode==='won')load(0);else resume();};
+  $('ov-secondary').onclick=()=>load(state.level);
+  $('restart').onclick=()=>load(state.level);
+  $('pause').onclick=()=>{if(mode==='intro')load(state.level);else pause();};
+  picker.addEventListener('pointerdown',()=>{pickerPointer=true;});
+  picker.addEventListener('keydown',e=>{pickerPointer=false;if(e.key==='Enter'){e.preventDefault();if(mode==='playing')focusStage();}});
+  picker.addEventListener('change',()=>{load(Number(picker.value),pickerPointer);pickerPointer=false;});
+
+  function press(code,source){
+    if(mode!=='playing')return;
+    if(!held.has(code)){if(jumpKeys.includes(code))jumpQueued=true;if(dashKeys.includes(code))dashQueued=true;}
+    if(!sources.has(code))sources.set(code,new Set());sources.get(code).add(source);held.add(code);
+  }
+  function release(code,source){const set=sources.get(code);if(set){set.delete(source);if(!set.size){sources.delete(code);held.delete(code);}}}
+  window.addEventListener('keydown',e=>{
+    if(!allKeys.has(e.code))return;
+    const t=e.target;
+    // Focused form controls keep their native keys; only Esc still pauses.
+    if(t instanceof HTMLSelectElement){if(e.code==='Escape'&&mode!=='intro'&&mode!=='won'){e.preventDefault();pause();}return;}
+    if(t instanceof HTMLButtonElement&&e.code==='Space')return;
+    e.preventDefault();if(e.repeat)return;
+    if(e.code==='Escape'){if(mode!=='intro'&&mode!=='won')pause();return;}
+    if(e.code==='KeyR'){load(mode==='won'?0:state.level);return;}
+    press(e.code,'keyboard');
+  });
+  window.addEventListener('keyup',e=>release(e.code,'keyboard'));
+  window.addEventListener('blur',()=>{clearInput();if(mode==='playing'||mode==='transition')pause();});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){clearInput();if(mode==='playing'||mode==='transition')pause();}});
+  stage.addEventListener('pointerdown',e=>{if(mode==='playing'&&e.target===canvas)focusStage();});
+  const down=keys=>keys.some(k=>held.has(k));
+  function input(){const result={x:Number(down(['ArrowRight','KeyD']))-Number(down(['ArrowLeft','KeyA'])),y:Number(down(['ArrowDown','KeyS']))-Number(down(['ArrowUp','KeyW'])),jump:jumpQueued,dash:dashQueued,jumpHeld:down(jumpKeys),dashHeld:down(dashKeys),grab:down(grabKeys)};jumpQueued=false;dashQueued=false;return result;}
+
+  // Rendering: original code-native pixel art at the native 320x180. Every asset below is an
+  // authored, palette-indexed row array baked once into a small canvas; nothing feeds the engine.
+  function rect(x,y,w,h,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x),Math.round(y),w,h);}
+  function text(str,x,y,color,size){ctx.fillStyle=color;ctx.font=`${size}px -apple-system, sans-serif`;ctx.fillText(str,x,y);}
+  const layer=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;};
+  const mix=(a,b,k)=>'#'+[1,3,5].map(i=>Math.round(parseInt(a.slice(i,i+2),16)*(1-k)+parseInt(b.slice(i,i+2),16)*k).toString(16).padStart(2,'0')).join('');
+  const hash=(x,y)=>{let h=Math.imul(x|0,73856093)^Math.imul(y|0,19349663);h=Math.imul(h^h>>>13,1274126177);return (h^h>>>16)>>>0;};
+  const INK='#0b0f16';
+  // Paint a row array: palette maps a character to a color, `ink` adds a 4-neighbour outline
+  // (never below the last row, so feet and door sills sit exactly on the ground line).
+  function paint(rows,palette,{flip=false,ink=null}={}){
+    const H=rows.length,W=rows[0].length,c=layer(W+2,H+1),g=c.getContext('2d');
+    const key=(x,y)=>y>=0&&y<H&&x>=0&&x<W?rows[y][flip?W-1-x:x]:' ',solid=(x,y)=>palette[key(x,y)]!==undefined;
+    for(let y=-1;y<H;y++)for(let x=-1;x<=W;x++){
+      const color=solid(x,y)?palette[key(x,y)]:ink&&(solid(x-1,y)||solid(x+1,y)||solid(x,y-1)||solid(x,y+1))?ink:null;
+      if(color){g.fillStyle=color;g.fillRect(x+1,y+1,1,1);}
+    }
+    return c;
+  }
+
+  // Backdrop: banded night sky, a dim moon, terraced far mesas, a broken colonnade and near hills.
+  // Built once from fixed numbers; it never moves or flickers.
+  const backdrop=(()=>{
+    const c=layer(320,180),g=c.getContext('2d'),put=(x,y,w,h,color)=>{g.fillStyle=color;g.fillRect(x,y,w,h);};
+    const bands=['#0a1018','#0c131d','#0e1520','#101a26','#121e2b'];
+    bands.forEach((color,i)=>{put(0,i*36,320,36,color);if(i)for(let y=i*36-2;y<i*36;y++)for(let x=y&1;x<320;x+=2)put(x,y,1,1,color);});
+    for(let y=-11;y<=11;y++)for(let x=-11;x<=11;x++){
+      if(x*x+y*y>110)continue;
+      put(262+x,34+y,1,1,(x+4)*(x+4)+(y+3)*(y+3)<=86?'#162131':x*x+y*y>86?'#24344a':'#1d2b3d');
+    }
+    [[18,14],[47,30],[71,9],[103,22],[131,41],[150,12],[178,27],[204,8],[221,44],[240,17],[292,12],[307,46],[86,52],[12,58],[164,60],[283,66]].forEach(([x,y],i)=>{
+      if(i%5===2){put(x-1,y,3,1,'#26364a');put(x,y-1,1,3,'#26364a');put(x,y,1,1,'#4a5d74');}else put(x,y,1,1,i%3?'#2a394c':'#3c4e64');
+    });
+    for(let x=0;x<320;x+=4){
+      const y=2*Math.round((104+9*Math.sin(x*.021)+6*Math.sin(x*.057+1.3)+3*Math.sin(x*.13+.4))/2);
+      put(x,y,4,180-y,'#152131');put(x,y,4,1,'#1b293b');
+    }
+    const hill=x=>Math.round(146+5*Math.sin(x*.031+2)+3*Math.sin(x*.09));
+    for(const [x,w,h,cap] of [[26,6,30,1],[44,6,30,1],[96,5,18,0],[150,6,40,1],[204,5,14,0],[246,6,26,1],[264,6,26,1],[300,5,20,0]]){
+      const base=hill(x+3),top=base-h;put(x,top,w,h+4,'#0f1722');if(cap){put(x-1,top,w+2,2,'#0f1722');put(x-1,top,w+2,1,'#162030');}else{put(x+1,top-2,2,2,'#0f1722');put(x,top,1,1,'#162030');}
+    }
+    put(26,hill(29)-30,24,3,'#0f1722');put(26,hill(29)-30,24,1,'#162030');put(246,hill(249)-26,26,3,'#0f1722');put(246,hill(249)-26,26,1,'#162030');
+    for(let x=0;x<320;x+=2){const y=hill(x);put(x,y,2,180-y,'#0b111a');put(x,y,2,1,'#111a26');}
+    return c;
+  })();
+  function background(){ctx.drawImage(backdrop,0,0);}
+
+  // Terrain: "dyed quarry stone". Running-bond masonry follows world coordinates so same-colour
+  // cells join into one mass; only exposed faces get the lit cap, side rims and dark underside.
+  const surfaceOf=b=>Game.surfaces[b.tile]||(b.phase<0?Game.neutral:Game.colors[b.phase]);
+  const materials=new Map();
+  function material(c){
+    let m=materials.get(c);
+    if(!m)materials.set(c,m={cap:c.hex,rim:c.edge,body:c.fill,lift:mix(c.fill,c.edge,.45),dim:mix(c.fill,'#000000',.14),seam:mix(c.fill,'#000000',.4),deep:mix(c.fill,'#000000',.58)});
+    return m;
+  }
+  function stone(g,X,Y,m,n){
+    const put=(x,y,w,h,color)=>{g.fillStyle=color;g.fillRect(X+x,Y+y,w,h);};
+    for(let y=0;y<8;y++){
+      const wy=Y+y,course=wy>>2,row=wy&3;
+      if(row===3){put(0,y,8,1,m.seam);continue;}
+      for(let x=0;x<8;x++){
+        const wx=X+x+(course&1)*4,brick=wx>>3,along=wx&7,mottle=hash(brick,course)%5===0;
+        const joint=along===7&&hash(brick,course*7+3)%3!==0;
+        put(x,y,1,1,joint?m.seam:row===0&&along<2?m.lift:mottle?m.dim:m.body);
+      }
+    }
+    const u=n(0,-1),d=n(0,1),l=n(-1,0),r=n(1,0),top=u?0:2;
+    if(!u){put(0,0,8,1,m.cap);put(0,1,8,1,m.rim);}
+    if(!d)put(0,7,8,1,m.deep);
+    if(!l){put(0,top,1,8-top,m.rim);if(!d)put(0,7,1,1,m.seam);}
+    if(!r){put(7,top,1,8-top,m.seam);if(!d)put(7,7,1,1,m.deep);}
+    if(!u&&!l)put(0,0,1,1,m.rim);
+    if(!u&&!r){put(7,0,1,1,m.rim);put(7,1,1,1,m.lift);}
+    if(u&&l&&!n(-1,-1))put(0,0,1,1,m.seam);
+    if(u&&r&&!n(1,-1))put(7,0,1,1,m.seam);
+    if(u&&d&&l&&r&&hash(X,Y)%11===0){put(2,1,1,1,m.seam);put(3,2,1,1,m.seam);put(3,4,1,1,m.deep);}
+  }
+  // Inactive stone keeps its footprint as a faint wash and a dashed outline: plannable, not standable.
+  function ghost(g,X,Y,m,n,blocked){
+    const put=(x,y,w,h,color)=>{g.fillStyle=color;g.fillRect(X+x,Y+y,w,h);},dash=(i,v)=>blocked||((v+i)&3)<2;
+    g.globalAlpha=blocked?.3:.12;put(0,0,8,8,m.body);
+    g.globalAlpha=blocked?.95:.62;
+    const u=n(0,-1),d=n(0,1),l=n(-1,0),r=n(1,0);
+    for(let i=0;i<8;i++){
+      if(!u&&(dash(i,X)||i===0||i===7))put(i,0,1,1,m.cap);
+      if(!d&&(dash(i,X)||i===0||i===7))put(i,7,1,1,m.rim);
+      if(!l&&(dash(i,Y)||i===0||i===7))put(0,i,1,1,m.rim);
+      if(!r&&(dash(i,Y)||i===0||i===7))put(7,i,1,1,m.rim);
+    }
+    g.globalAlpha=1;
+  }
+  // Mixed surfaces carry compact inlaid pips for each phase that makes them solid.
+  function pips(g,X,Y,b,alpha){
+    let dot=0;g.globalAlpha=alpha;
+    Game.colors.forEach((c,phase)=>{if(Game.activeInPhase(b,phase)){const x=X+2+dot++*3;g.fillStyle=INK;g.fillRect(x,Y+6,2,1);g.fillStyle=c.hex;g.fillRect(x,Y+4,2,2);}});
+    g.globalAlpha=1;
+  }
+  function drawBlock(g,b,index,phase,blocked,cells){
+    const active=Game.activeInPhase(b,phase)&&!blocked.has(index),m=material(surfaceOf(b)),kind=b.tile||'p'+b.phase;
+    for(let y=b.y;y<b.y+b.h;y+=Game.TILE)for(let x=b.x;x<b.x+b.w;x+=Game.TILE){
+      const n=(dx,dy)=>cells.get((x+dx*8)+','+(y+dy*8))===kind;
+      if(active)stone(g,x,y,m,n);else ghost(g,x,y,m,n,blocked.has(index));
+      if(b.phase===3&&!((x-b.x+y-b.y)>>3&1))pips(g,x,y,b,active?1:.6);
+    }
+  }
+
+  // Spikes: two stepped teeth per tile, lit from the left, on a solid root band. The band
+  // (rows 5-7 here) is exactly the lethal 3px strip of Game.spikeBox, so the danger is never hidden.
+  const SPIKE=['.oo..oo.','oTMooTMo','oLMooLMo','oLMooLMo','LLMMLLMM','LMMDLMMD','MMDDMMDD','DDDDDDDD'];
+  const spikeTiles=new Map();
+  function spikeTile(color,dir,active){
+    const id=color+dir+active;let tile=spikeTiles.get(id);if(tile)return tile;
+    const c=Game.surfaces[color],palette=active?{o:INK,T:mix(c.hex,'#ffffff',.6),L:c.hex,M:c.edge,D:c.fill}:{T:mix(c.edge,'#101a26',.45),L:mix(c.fill,'#101a26',.4),M:mix(c.fill,'#101a26',.6),D:mix(c.fill,'#101a26',.6)};
+    tile=layer(8,8);const g=tile.getContext('2d');
+    for(let v=0;v<8;v++)for(let u=0;u<8;u++){
+      const color=palette[SPIKE[v][u]];if(!color)continue;
+      const [x,y]=dir==='up'?[u,v]:dir==='down'?[u,7-v]:dir==='left'?[v,u]:[7-v,u];
+      g.fillStyle=color;g.fillRect(x,y,1,1);
+    }
+    spikeTiles.set(id,tile);return tile;
+  }
+  function drawSpikes(g,l,phase){
+    for(const h of l.spikes||[]){
+      const active=Game.activeInPhase(h,phase),tile=spikeTile(h.color,h.dir,active);
+      for(let y=h.y;y<h.y+h.h;y+=8)for(let x=h.x;x<h.x+h.w;x+=8){
+        g.drawImage(tile,x,y);g.globalAlpha=1;
+        if('YMC'.includes(h.color)&&(active||(x===h.x&&y===h.y))){let dot=0;g.globalAlpha=active?1:.6;Game.colors.forEach((c,p)=>{if(Game.activeInPhase(h,p)){const offset=2+dot++*3;g.fillStyle=c.hex;if(h.dir==='up'||h.dir==='down')g.fillRect(x+offset,y+(h.dir==='up'?6:1),2,1);else g.fillRect(x+(h.dir==='left'?6:1),y+offset,1,2);}});g.globalAlpha=1;}
+      }
+    }
+  }
+
+  // Terrain and hazards only change with phase or the blocked set, so each combination is baked
+  // into one 320x180 layer per room. Rooms that tests rebuild or extend get a fresh cache.
+  const terrainCache=new WeakMap();
+  function terrain(l){
+    let entry=terrainCache.get(l);
+    if(!entry||entry.count!==l.blocks.length||entry.spikes!==l.spikes){
+      const cells=new Map();
+      l.blocks.forEach(b=>{for(let y=b.y;y<b.y+b.h;y+=Game.TILE)for(let x=b.x;x<b.x+b.w;x+=Game.TILE)cells.set(x+','+y,b.tile||'p'+b.phase);});
+      entry={count:l.blocks.length,spikes:l.spikes,cells,layers:new Map()};terrainCache.set(l,entry);
+    }
+    const id=state.phase+'|'+[...state.blocked].sort((a,b)=>a-b).join(',');
+    let c=entry.layers.get(id);
+    if(!c){
+      if(entry.layers.size>12)entry.layers.clear();
+      c=layer(Game.W,Game.H);const g=c.getContext('2d');
+      l.blocks.forEach((b,i)=>drawBlock(g,b,i,state.phase,state.blocked,entry.cells));
+      drawSpikes(g,l,state.phase);entry.layers.set(id,c);
+    }
+    ctx.drawImage(c,0,0);
+  }
+
+  // The exit is a small stone arch around the 8x16 goal box: keystone and runes wear the
+  // colour it accepts; the doorway fills with light only while the player matches it.
+  const ARCH=['  sSkkSs  ',' sS    Ss ','sS      Ss','S        s','S        s','r        r','S        s','S        s','S        s','S        s','r        r','S        s','S        s','S        s','S        s','S        s','Ss      sS'];
+  const arches=new Map();
+  function arch(phase,open){
+    const id=phase+''+open;let c=arches.get(id);
+    if(!c){const col=Game.colors[phase],mark=open?col.hex:col.edge;c=paint(ARCH,{s:'#2c3644',S:'#56647a',k:mark,r:mark},{ink:INK});arches.set(id,c);}
+    return c;
+  }
+  function drawGoal(l,t){
+    const [x,y]=l.goal,c=Game.colors[l.goalPhase],open=state.phase===l.goalPhase;
+    if(open){
+      rect(x+1,y+1,6,15,c.fill);rect(x+2,y+1,4,1,mix(c.fill,c.hex,.5));rect(x+1,y+15,6,1,c.hex);rect(x+3,y+2,2,13,mix(c.fill,c.hex,.3));
+      for(let i=0;i<2;i++)rect(x+2+i*3,y+3+(reduced?i*5:(t*7+i*5)%11),1,2,'#f4fff2');
+    }else{
+      rect(x+1,y+1,6,15,'#0f151e');rect(x+1,y+15,6,1,'#1b2430');
+      rect(x+3,y+6,2,1,c.edge);rect(x+2,y+7,1,2,c.edge);rect(x+5,y+7,1,2,c.edge);rect(x+3,y+9,2,1,c.edge);rect(x+3,y+7,2,2,mix(c.fill,'#000000',.3));
+    }
+    ctx.drawImage(arch(l.goalPhase,open),x-2,y-2);
+  }
+
+  const MOVER=paint(['TTTTTTTT','hRbbbbRh','hbbbbbbs','hbhhhhbs','hbhsshbs','hbbbbbbs','hRbbbbRs','ssssssss'],{T:'#f2dc8a',R:'#e7ce76',b:'#6f603c',h:'#8f7c47',s:'#4b4129'});
+  function drawMover(){
+    const m=state.mover;if(!m)return;ctx.save();ctx.strokeStyle='#e0c56980';ctx.setLineDash([2,2]);
+    for(let i=0;i<(m.kind==='return'?1:m.nodes.length);i++){const [x,y]=m.nodes[i],[nx,ny]=m.nodes[(i+1)%m.nodes.length];ctx.beginPath();ctx.moveTo(x+m.w/2,y+m.h/2);ctx.lineTo(nx+m.w/2,ny+m.h/2);ctx.stroke();}
+    ctx.setLineDash([]);
+    m.nodes.forEach(([x,y],i)=>{rect(x+m.w/2-1,y+2,3,3,'#e0c56980');if(m.kind!=='return')text(String(i+1),x+m.w/2-2,y-3,'#b9b09a',5);});
+    rect(m.x-1,m.y-1,m.w+2,m.h+2,INK);
+    for(let y=m.y;y<m.y+m.h;y+=8)for(let x=m.x;x<m.x+m.w;x+=8)ctx.drawImage(MOVER,1,1,8,8,Math.round(x),Math.round(y),8,8);
+    const label=m.kind==='return'?(Math.sign(m.nodes[1][0]-m.nodes[0][0])*(m.index===1?1:-1)>0?'→':'←'):String((m.index+1)%m.nodes.length+1);text(label,m.x+m.w/2-2,m.y+6,'#fff0b7',6);ctx.restore();
+  }
+
+  // Player: "Wick", a small hooded wanderer with a back-swept hood point and a dark face
+  // hollow. Eyes show the current phase; the scarf is the dash charge (amber and long when
+  // ready, slate and short when spent), so the two never share a colour channel.
+  // Frames face right, 10 columns wide: columns 1-8 are the 8px collider, the last row is the
+  // feet row. Standing frames are 13 rows (2 hood rows above the 11px collider); duck is 8 (2+6).
+  const FRAMES={
+    idle:['..cc......','..dcc.....','.dccccc...','.dcccccc..','.dccfffff.','.dcffefef.','.dccffff..','..kkkkk...','.dccccccc.','.dcccccdc.','.ssssssss.','..bb..bb..','..bb..bb..'],
+    blink:['..cc......','..dcc.....','.dccccc...','.dcccccc..','.dccfffff.','.dcffffff.','.dccfefe..','..kkkkk...','.dccccccc.','.dcccccdc.','.ssssssss.','..bb..bb..','..bb..bb..'],
+    run0:['...cc.....','...dcc....','..dccccc..','..dcccccc.','..dccfffff','..dcffefef','..dccffff.','...kkkkk..','.dcccccccd','ddccccccc.','.ssssssss.','.bb...BB..','bb.....BB.'],
+    run1:['...dcc....','..dccccc..','..dcccccc.','..dccfffff','..dcffefef','..dccffff.','...kkkkk..','.dccccccd.','.dcccccdc.','.ssssssss.','.bbbBB....','.bb.BB....','....BB....'],
+    run2:['...cc.....','...dcc....','..dccccc..','..dcccccc.','..dccfffff','..dcffefef','..dccffff.','...kkkkk..','.dccccccc.','dddcccccc.','.ssssssss.','.BB...bb..','BB.....bb.'],
+    run3:['...dcc....','..dccccc..','..dcccccc.','..dccfffff','..dcffefef','..dccffff.','...kkkkk..','.dccccccd.','.dcccccdc.','.ssssssss.','.BBBbb....','.BB.bb....','....bb....'],
+    jump:['..........','ccc.......','.dcccccc..','.dccccccc.','.dccfffff.','.dcffefef.','.dccffff..','..kkkkk...','ddccccccdd','.dccccccc.','.ssssssss.','..bb.BB...','..b...B...'],
+    fall:['...cc.....','...cc.....','.dccccc...','.dcccccc..','.dccfffff.','.dcffefef.','.dccffff..','d.kkkkk..d','ddccccccdd','.dccccccc.','ssssssssss','..bb..BB..','..b....B..'],
+    dash:['..........','ccc.......','.ddccccc..','..dcccccc.','..dccfffff','..dcffefef','..dccffff.','...kkkkk..','.dcccccccd','ddccccccc.','ssssss....','bbb...BB..','......BB..'],
+    climb0:['..cc....d.','..dcc...d.','.dccccc.d.','.dccccccd.','.dcccfffd.','.dccffefd.','.dcccfff..','..kkkkkk..','.dccccccd.','.dcccccdd.','.ssssss...','..bb.bbb..','..bb......'],
+    climb1:['..cc......','..dcc.....','.dccccc...','.dccccccd.','.dcccfffd.','.dccffefd.','.dcccfffd.','..kkkkkkd.','.dccccccd.','.dcccccc..','.ssssss...','..BBB.bb..','......bb..'],
+    duck:['..........','..cc......','.dcccccc..','.dccfffff.','.dcffefef.','..kkkkkk..','sdcccccccs','.bbssssbb.']
+  };
+  const CLOAK={c:'#eadfc5',d:'#b3a386',s:'#7d6e5c',f:'#1a1f2c',b:'#453c59',B:'#2c263b'};
+  const SCARF=[['#5a6578','#414a5a'],['#ffb24d','#d5732b']];
+  const sprites=new Map();
+  function sprite(name,facing,eye,scarf){
+    const id=name+facing+eye+scarf;let c=sprites.get(id);
+    if(!c){c=paint(FRAMES[name],eye?{...CLOAK,e:eye,k:scarf}:Object.fromEntries('cdsfbBek'.split('').map(k=>[k,scarf])),{flip:facing<0,ink:eye?INK:null});sprites.set(id,c);}
+    return c;
+  }
+  function pose(p,t){
+    if(p.climbing)return p.climbMove&&Math.floor(t*(p.climbMove<0?8:11))%2?'climb1':'climb0';
+    if(p.dashTime>0)return p.dx?'dash':p.dy<0?'jump':'fall';
+    if(p.ducking)return 'duck';
+    if(!p.grounded)return p.vy<0?'jump':'fall';
+    if(Math.abs(p.vx)>7)return 'run'+Math.floor(t*12)%4;
+    return t%3.4<.14?'blink':'idle';
+  }
+  // The scarf trails from the knot opposite the facing direction: hanging at rest, streaming
+  // while moving, flat behind a dash. Reduced motion keeps the shape but drops the flutter.
+  function drawScarf(p,t,name,x,feet){
+    const rows=FRAMES[name],ky=rows.findIndex(r=>r.includes('k')),kx=rows[ky].indexOf('k'),f=p.facing,ready=!!p.dash,[main,shade]=SCARF[+ready],len=ready?5:3;
+    const ax=f>0?x+kx-1:x+8-kx,ay=feet-rows.length+ky,still=p.climbing||name==='duck'||(p.grounded&&Math.abs(p.vx)<=7),segs=[];
+    for(let i=1;i<=len;i++){
+      let dy=name==='dash'?0:still?i*(ready?.6:1):i*(ready?.15:.7)+(p.vy>0?-i*.35:p.vy<0?i*.25:0);
+      if(!reduced&&name!=='dash')dy+=still?Math.sin(t*3+i)*.3:Math.sin(t*14-i*1.2)*.8*i/len;
+      segs.push([p.climbing?ax-f*Math.ceil(i/2):ax-f*i,ay+Math.round(dy),i<=2?2:1]);
+    }
+    segs.forEach(([sx,sy,h])=>rect(sx,sy-1,1,h+2,INK));const [ex,ey,eh]=segs[len-1];rect(ex-f,ey,1,eh,INK);
+    segs.forEach(([sx,sy,h],i)=>rect(sx,sy,1,h,i===len-1?shade:main));
+  }
+  function drawPlayer(p,t){
+    const name=pose(p,t),x=Math.round(p.x),feet=Math.round(p.y+p.h)+(p.climbing&&p.stamina<=20&&!reduced&&Math.floor(t*8)%2?1:0);
+    drawScarf(p,t,name,x,feet);
+    ctx.drawImage(sprite(name,p.facing,Game.colors[state.phase].hex,SCARF[+!!p.dash][0]),x-2,feet-FRAMES[name].length-1);
+  }
+  function drawScene(drawCharacter=true){
+    const t=state.time,l=Game.levels[state.level];ctx.save();
+    if(state.shake&&!reduced)ctx.translate(Math.sin(t*100)*state.shake*6,Math.cos(t*80)*state.shake*4);
+    background();terrain(l);drawMover();drawGoal(l,t);
+    // Dash afterimages reuse the dash silhouette in the phase colour instead of plain boxes.
+    if(!reduced)for(const trail of state.trails){ctx.globalAlpha=trail.life*2;ctx.drawImage(sprite('dash',state.player.facing,null,Game.colors[trail.phase].hex),Math.round(trail.x)-2,Math.round(trail.y)+11-14);}ctx.globalAlpha=1;
+    if(drawCharacter&&!state.respawn)drawPlayer(state.player,t);
+    for(const p of state.particles){ctx.globalAlpha=Math.min(1,p.life*3);rect(p.x,p.y,1,1,p.color);}ctx.globalAlpha=1;
+    if(state.flash&&!reduced){ctx.globalAlpha=state.flash*.3;rect(0,0,320,180,Game.colors[state.phase].hex);ctx.globalAlpha=1;}
+    ctx.restore();
+  }
+
+  // HUD lives outside the canvas and only touches the DOM when a value changes.
+  const hud={};
+  function setHud(key,value,apply){if(hud[key]!==value){hud[key]=value;apply(value);}}
+  function updateHud(){
+    const p=state.player,c=Game.colors[state.phase];
+    setHud('phase',state.phase,v=>{[...$('cycle').children].forEach((el,i)=>el.classList.toggle('on',i===v));$('phase-name').textContent=c.name;$('phase-name').style.color=c.hex;});
+    setHud('dash',!!p.dash,v=>{$('dash').classList.toggle('spent',!v);$('dash-text').textContent=v?'衝刺':'衝刺・落地補充';});
+    const show=mode!=='intro'&&(p.climbing||p.stamina<Game.P.stamina);
+    setHud('stamina',show,v=>$('stamina').hidden=!v);
+    if(show){const ratio=Math.max(0,p.stamina)/Game.P.stamina;setHud('fill',Math.round(ratio*56),v=>$('stamina-fill').style.width=v+'px');setHud('low',p.stamina<=20,v=>$('stamina').classList.toggle('low',v));}
+  }
+  function draw(){
+    if(transition){
+      const current=state,progress=transition.elapsed/.4,ease=1-Math.pow(1-progress,3),dir=transition.dir;
+      if(dir){
+        ctx.save();ctx.translate(-Game.W*ease*dir,0);state=transition.previous;drawScene(false);ctx.globalAlpha=Math.max(0,1-progress*3);drawPlayer(state.player,state.time);ctx.restore();
+        ctx.save();ctx.translate(Game.W*(1-ease)*dir,0);state=current;drawScene(false);ctx.globalAlpha=Math.max(0,progress*3-2);drawPlayer(state.player,state.time);ctx.restore();
+      }else{
+        state=progress<.5?transition.previous:current;drawScene();state=current;
+        ctx.save();ctx.globalAlpha=1-Math.abs(progress*2-1);rect(0,0,Game.W,Game.H,'#0e1621');ctx.restore();
+      }
+    }else drawScene();
+    updateHud();
+  }
+  function frame(now){
+    const elapsed=last?Math.min((now-last)/1000,.05):0;last=now;
+    if(mode==='playing'){
+      accumulator+=elapsed;
+      while(accumulator>=Game.DT){Game.step(state,input());accumulator-=Game.DT;state.events=[];
+        if(state.won){
+          completed.add(state.level);clearInput();
+          if(state.level<count-1){
+            const previous=state,next=Game.create(state.level+1);next.deaths=state.deaths;next.dashes=state.dashes;next.jumps=state.jumps;next.totalTime=state.totalTime;
+            const side=p=>p.x<=Game.TILE*3?-1:p.x+p.w>=Game.W-Game.TILE*3?1:0,exit=side(previous.player),entry=side(next.player);
+            const dir=exit&&exit===-entry&&Math.abs(previous.player.y+previous.player.h-next.player.y-next.player.h)<=Game.TILE?exit:0;
+            transition=reduced?null:{previous,dir,elapsed:0};state=next;mode=transition?'transition':'playing';accumulator=0;syncLevel();announce(`第 ${state.level+1} 關，${Game.levels[state.level].name}`);
+          }else{syncLevel();mode='won';announce('全部完成');showOverlay('完成',`${count} 關・${clock(state.totalTime)}・重試 ${state.deaths} 次`,'從第一關再玩',false,false);}
+          break;
+        }
+      }
+    }else{accumulator=0;if(mode==='transition'){transition.elapsed=Math.min(.4,transition.elapsed+elapsed);if(transition.elapsed>=.4){transition=null;mode='playing';clearInput();}}}
+    draw();requestAnimationFrame(frame);
+  }
+
+  // Desktop keyboard layout: integer pixel scale whenever the window allows it.
+  const app=$('app');
+  function fit(){
+    const vw=document.documentElement.clientWidth,vh=window.innerHeight;
+    const avail=Math.min(vw-24,(vh-24-48-32)*16/9),scale=Math.floor(avail/320);
+    const w=scale>=2?320*scale:Math.max(Math.min(vw-24,296),avail);
+    app.style.setProperty('--w',Math.round(w+24)+'px');
+  }
+  addEventListener('resize',fit);fit();
+  syncLevel();$('ov-primary').focus({preventScroll:true});requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

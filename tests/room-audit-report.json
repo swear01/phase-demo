@@ -1,0 +1,4265 @@
+{
+  "sourceSha256": "d7b23531f72f88c92d6491100d07b0cb17e2f2aac91628b2ba9d7ce605a27d05",
+  "contractsSha256": "a9dd6baef9ea4922236f74b1bf1dc11fc5142c850f9889d658c3ea8cdf6ef861",
+  "budget": {
+    "seconds": 3,
+    "states": 80000,
+    "frames": 1200,
+    "step": 6,
+    "width": 24
+  },
+  "limits": "Contacts and single-part route ablations do not prove necessity or irrelevance; searches are bounded.",
+  "rooms": [
+    {
+      "level": 0,
+      "name": "紅刺",
+      "parts": [
+        {
+          "id": "terrain-0",
+          "kind": "terrain",
+          "index": 0,
+          "color": "G",
+          "rect": [
+            21,
+            17,
+            7,
+            2
+          ],
+          "phaseMask": 4,
+          "observed": {
+            "reference": [
+              "floor:G"
+            ],
+            "tolerances.json:early-first-takeoff": [
+              "floor:G"
+            ],
+            "tolerances.json:wait-60-among-ghost-spikes": [
+              "floor:G"
+            ],
+            "tolerances.json:second-takeoff-from-middle": [
+              "floor:G"
+            ],
+            "accepted-edge-takeoff-still-borrows-blue.json": [
+              "floor:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-1",
+          "kind": "terrain",
+          "index": 1,
+          "color": "R",
+          "rect": [
+            1,
+            20,
+            7,
+            2
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "floor:R"
+            ],
+            "tolerances.json:early-first-takeoff": [
+              "floor:R"
+            ],
+            "tolerances.json:wait-60-among-ghost-spikes": [
+              "floor:R"
+            ],
+            "tolerances.json:second-takeoff-from-middle": [
+              "floor:R"
+            ],
+            "mistakes.json:walk-into-red-strip": [
+              "floor:R"
+            ],
+            "accepted-edge-takeoff-still-borrows-blue.json": [
+              "floor:R"
+            ]
+          },
+          "referenceWithout": {
+            "status": "not run: removal invalidates spawn support"
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-2",
+          "kind": "terrain",
+          "index": 2,
+          "color": "B",
+          "rect": [
+            8,
+            20,
+            9,
+            2
+          ],
+          "phaseMask": 2,
+          "observed": {
+            "reference": [
+              "floor:B"
+            ],
+            "tolerances.json:early-first-takeoff": [
+              "floor:B"
+            ],
+            "tolerances.json:wait-60-among-ghost-spikes": [
+              "floor:B"
+            ],
+            "tolerances.json:second-takeoff-from-middle": [
+              "floor:B"
+            ],
+            "accepted-edge-takeoff-still-borrows-blue.json": [
+              "floor:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "blue-borrow"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-3",
+          "kind": "terrain",
+          "index": 3,
+          "color": "G",
+          "rect": [
+            17,
+            22,
+            11,
+            1
+          ],
+          "phaseMask": 4,
+          "observed": {},
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-first-takeoff",
+            "tolerances.json:wait-60-among-ghost-spikes",
+            "tolerances.json:second-takeoff-from-middle",
+            "accepted-edge-takeoff-still-borrows-blue.json"
+          ]
+        },
+        {
+          "id": "spikes-0",
+          "kind": "spikes",
+          "index": 0,
+          "color": "R",
+          "dir": "up",
+          "rect": [
+            8,
+            19,
+            9,
+            1
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "inactive-overlap:B",
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:early-first-takeoff": [
+              "inactive-overlap:B",
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:wait-60-among-ghost-spikes": [
+              "inactive-overlap:B",
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:second-takeoff-from-middle": [
+              "inactive-overlap:B",
+              "inactive-overlap:G"
+            ],
+            "mistakes.json:walk-into-red-strip": [
+              "death-overlap:R"
+            ],
+            "accepted-edge-takeoff-still-borrows-blue.json": [
+              "inactive-overlap:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-first-takeoff",
+            "tolerances.json:wait-60-among-ghost-spikes",
+            "tolerances.json:second-takeoff-from-middle",
+            "accepted-edge-takeoff-still-borrows-blue.json"
+          ]
+        },
+        {
+          "id": "spikes-1",
+          "kind": "spikes",
+          "index": 1,
+          "color": "G",
+          "dir": "up",
+          "rect": [
+            17,
+            21,
+            11,
+            1
+          ],
+          "phaseMask": 4,
+          "observed": {},
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-first-takeoff",
+            "tolerances.json:wait-60-among-ghost-spikes",
+            "tolerances.json:second-takeoff-from-middle",
+            "accepted-edge-takeoff-still-borrows-blue.json"
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "id": "reference",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:early-first-takeoff",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:wait-60-among-ghost-spikes",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:second-takeoff-from-middle",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "mistakes.json:walk-into-red-strip",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "blue-borrow"
+          ]
+        },
+        {
+          "id": "accepted-edge-takeoff-still-borrows-blue.json",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        }
+      ],
+      "searches": [
+        {
+          "level": 0,
+          "name": "紅刺",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 7914,
+          "elapsedMs": 313,
+          "method": "reachable-prefix beam",
+          "depthFrames": 98,
+          "prefixStarts": 12,
+          "branchDepthFrames": 43,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "blue-borrow"
+          },
+          "target": "blue-borrow"
+        }
+      ],
+      "acceptedFindings": [
+        {
+          "level": 0,
+          "name": "紅刺",
+          "status": "found",
+          "reason": "counterexample replayed",
+          "states": 107,
+          "elapsedMs": 65,
+          "method": "route-mutation",
+          "depthFrames": 0,
+          "prefixStarts": 0,
+          "branchDepthFrames": 0,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "jump-from-blue"
+          },
+          "missing": [
+            "jump-from-blue"
+          ],
+          "events": [
+            {
+              "frame": 58,
+              "id": "blue-borrow",
+              "phase": 1
+            }
+          ],
+          "jumps": 2,
+          "dashes": 0,
+          "target": "jump-from-blue",
+          "witness": "room-1-jump-from-blue.json",
+          "disposition": "same-element alternative; narrow launch region was not a core dependency"
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "name": "頭頂",
+      "parts": [
+        {
+          "id": "terrain-0",
+          "kind": "terrain",
+          "index": 0,
+          "color": "R",
+          "rect": [
+            20,
+            13,
+            6,
+            1
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "floor:R"
+            ],
+            "tolerances.json:early-jump-two": [
+              "floor:R"
+            ],
+            "tolerances.json:late-jump-three-wait-60": [
+              "floor:R"
+            ],
+            "tolerances.json:late-jump-two-short-run": [
+              "floor:R"
+            ],
+            "accepted-wall-bounce-still-borrows-green.json": [
+              "left-face:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "accepted-wall-bounce-still-borrows-green.json"
+          ]
+        },
+        {
+          "id": "terrain-1",
+          "kind": "terrain",
+          "index": 1,
+          "color": "G",
+          "rect": [
+            8,
+            15,
+            6,
+            1
+          ],
+          "phaseMask": 4,
+          "observed": {
+            "reference": [
+              "floor:G",
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:early-jump-two": [
+              "floor:G",
+              "inactive-overlap:B",
+              "right-face:G"
+            ],
+            "tolerances.json:late-jump-three-wait-60": [
+              "floor:G",
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late-jump-two-short-run": [
+              "floor:G",
+              "inactive-overlap:B"
+            ],
+            "mistakes.json:jump-straight-up-under-green": [
+              "inactive-overlap:B"
+            ],
+            "accepted-wall-bounce-still-borrows-green.json": [
+              "floor:G",
+              "inactive-overlap:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "green-ledge"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-2",
+          "kind": "terrain",
+          "index": 2,
+          "color": "B",
+          "rect": [
+            11,
+            18,
+            9,
+            2
+          ],
+          "phaseMask": 2,
+          "observed": {
+            "reference": [
+              "floor:B"
+            ],
+            "tolerances.json:early-jump-two": [
+              "floor:B"
+            ],
+            "tolerances.json:late-jump-three-wait-60": [
+              "floor:B"
+            ],
+            "tolerances.json:late-jump-two-short-run": [
+              "floor:B"
+            ],
+            "mistakes.json:jump-straight-up-under-green": [
+              "floor:B"
+            ],
+            "accepted-wall-bounce-still-borrows-green.json": [
+              "floor:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "blue-step",
+              "green-ledge"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-3",
+          "kind": "terrain",
+          "index": 3,
+          "color": "R",
+          "rect": [
+            1,
+            20,
+            7,
+            2
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "floor:R"
+            ],
+            "tolerances.json:early-jump-two": [
+              "floor:R"
+            ],
+            "tolerances.json:late-jump-three-wait-60": [
+              "floor:R"
+            ],
+            "tolerances.json:late-jump-two-short-run": [
+              "floor:R"
+            ],
+            "mistakes.json:jump-straight-up-under-green": [
+              "floor:R"
+            ],
+            "accepted-wall-bounce-still-borrows-green.json": [
+              "floor:R"
+            ]
+          },
+          "referenceWithout": {
+            "status": "not run: removal invalidates spawn support"
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "spikes-0",
+          "kind": "spikes",
+          "index": 0,
+          "color": "G",
+          "dir": "down",
+          "rect": [
+            8,
+            16,
+            6,
+            1
+          ],
+          "phaseMask": 4,
+          "observed": {
+            "reference": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:early-jump-two": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late-jump-three-wait-60": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late-jump-two-short-run": [
+              "inactive-overlap:B"
+            ],
+            "mistakes.json:jump-straight-up-under-green": [
+              "death-overlap:G",
+              "inactive-overlap:B"
+            ],
+            "accepted-wall-bounce-still-borrows-green.json": [
+              "inactive-overlap:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-jump-two",
+            "tolerances.json:late-jump-three-wait-60",
+            "tolerances.json:late-jump-two-short-run",
+            "accepted-wall-bounce-still-borrows-green.json"
+          ]
+        },
+        {
+          "id": "spikes-1",
+          "kind": "spikes",
+          "index": 1,
+          "color": "R",
+          "dir": "down",
+          "rect": [
+            20,
+            14,
+            6,
+            1
+          ],
+          "phaseMask": 1,
+          "observed": {},
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-jump-two",
+            "tolerances.json:late-jump-three-wait-60",
+            "tolerances.json:late-jump-two-short-run",
+            "accepted-wall-bounce-still-borrows-green.json"
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "id": "reference",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:early-jump-two",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:late-jump-three-wait-60",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:late-jump-two-short-run",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "mistakes.json:jump-straight-up-under-green",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "green-ledge"
+          ]
+        },
+        {
+          "id": "accepted-wall-bounce-still-borrows-green.json",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        }
+      ],
+      "searches": [
+        {
+          "level": 1,
+          "name": "頭頂",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 12211,
+          "elapsedMs": 525,
+          "method": "reachable-prefix beam",
+          "depthFrames": 117,
+          "prefixStarts": 15,
+          "branchDepthFrames": 67,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "blue-step"
+          },
+          "target": "blue-step"
+        },
+        {
+          "level": 1,
+          "name": "頭頂",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 18851,
+          "elapsedMs": 715,
+          "method": "reachable-prefix beam",
+          "depthFrames": 189,
+          "prefixStarts": 37,
+          "branchDepthFrames": 108,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "green-ledge"
+          },
+          "target": "green-ledge"
+        }
+      ],
+      "acceptedFindings": [
+        {
+          "level": 1,
+          "name": "頭頂",
+          "status": "found",
+          "reason": "counterexample replayed",
+          "states": 5852,
+          "elapsedMs": 278,
+          "method": "reachable-prefix beam",
+          "depthFrames": 230,
+          "prefixStarts": 54,
+          "branchDepthFrames": 24,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "jump-from-green"
+          },
+          "missing": [
+            "jump-from-green"
+          ],
+          "events": [
+            {
+              "frame": 50,
+              "id": "blue-step",
+              "phase": 1
+            },
+            {
+              "frame": 103,
+              "id": "green-ledge",
+              "phase": 2
+            }
+          ],
+          "jumps": 3,
+          "dashes": 1,
+          "target": "jump-from-green",
+          "witness": "room-2-jump-from-green.json",
+          "disposition": "same-element alternative; narrow launch region was not a core dependency"
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "name": "保藍",
+      "parts": [
+        {
+          "id": "terrain-0",
+          "kind": "terrain",
+          "index": 0,
+          "color": "R",
+          "rect": [
+            18,
+            0,
+            1,
+            23
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:early dash (13 frames walking on A)": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late up-right dash after walking off A (24 frames)": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late first jump, down-right dash, late final jump": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:60-frame rest on A, then dash": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:60-frame rest on far blue ledge before turning green": [
+              "inactive-overlap:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early dash (13 frames walking on A)",
+            "tolerances.json:late up-right dash after walking off A (24 frames)",
+            "tolerances.json:late first jump, down-right dash, late final jump",
+            "tolerances.json:60-frame rest on A, then dash",
+            "tolerances.json:60-frame rest on far blue ledge before turning green"
+          ]
+        },
+        {
+          "id": "terrain-1",
+          "kind": "terrain",
+          "index": 1,
+          "color": "G",
+          "rect": [
+            30,
+            16,
+            6,
+            2
+          ],
+          "phaseMask": 4,
+          "observed": {
+            "reference": [
+              "floor:G"
+            ],
+            "tolerances.json:early dash (13 frames walking on A)": [
+              "floor:G"
+            ],
+            "tolerances.json:late up-right dash after walking off A (24 frames)": [
+              "floor:G"
+            ],
+            "tolerances.json:late first jump, down-right dash, late final jump": [
+              "floor:G"
+            ],
+            "tolerances.json:60-frame rest on A, then dash": [
+              "floor:G"
+            ],
+            "tolerances.json:60-frame rest on far blue ledge before turning green": [
+              "floor:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-2",
+          "kind": "terrain",
+          "index": 2,
+          "color": "B",
+          "rect": [
+            9,
+            18,
+            6,
+            2
+          ],
+          "phaseMask": 2,
+          "observed": {
+            "reference": [
+              "floor:B"
+            ],
+            "tolerances.json:early dash (13 frames walking on A)": [
+              "floor:B"
+            ],
+            "tolerances.json:late up-right dash after walking off A (24 frames)": [
+              "floor:B"
+            ],
+            "tolerances.json:late first jump, down-right dash, late final jump": [
+              "floor:B",
+              "left-face:B"
+            ],
+            "tolerances.json:60-frame rest on A, then dash": [
+              "floor:B"
+            ],
+            "tolerances.json:60-frame rest on far blue ledge before turning green": [
+              "floor:B"
+            ],
+            "mistakes.json:jump off A instead of dashing: turns green, yellow thorns live": [
+              "floor:B"
+            ],
+            "mistakes.json:coyote jump after walking off A, then dash: green at the pillar": [
+              "floor:B"
+            ],
+            "mistakes.json:parent witness (exact actions)": [
+              "floor:B"
+            ],
+            "known-skips.json:green-super-skips-yellow-corridor": [
+              "floor:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "far-blue-ledge",
+              "green-change-past-pillar"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-3",
+          "kind": "terrain",
+          "index": 3,
+          "color": "B",
+          "rect": [
+            21,
+            19,
+            6,
+            2
+          ],
+          "phaseMask": 2,
+          "observed": {
+            "reference": [
+              "floor:B"
+            ],
+            "tolerances.json:early dash (13 frames walking on A)": [
+              "floor:B"
+            ],
+            "tolerances.json:late up-right dash after walking off A (24 frames)": [
+              "floor:B"
+            ],
+            "tolerances.json:late first jump, down-right dash, late final jump": [
+              "floor:B"
+            ],
+            "tolerances.json:60-frame rest on A, then dash": [
+              "floor:B"
+            ],
+            "tolerances.json:60-frame rest on far blue ledge before turning green": [
+              "floor:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "far-blue-ledge",
+              "green-change-past-pillar"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-4",
+          "kind": "terrain",
+          "index": 4,
+          "color": "R",
+          "rect": [
+            1,
+            20,
+            7,
+            2
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "floor:R"
+            ],
+            "tolerances.json:early dash (13 frames walking on A)": [
+              "floor:R"
+            ],
+            "tolerances.json:late up-right dash after walking off A (24 frames)": [
+              "floor:R"
+            ],
+            "tolerances.json:late first jump, down-right dash, late final jump": [
+              "floor:R"
+            ],
+            "tolerances.json:60-frame rest on A, then dash": [
+              "floor:R"
+            ],
+            "tolerances.json:60-frame rest on far blue ledge before turning green": [
+              "floor:R"
+            ],
+            "mistakes.json:jump off A instead of dashing: turns green, yellow thorns live": [
+              "floor:R"
+            ],
+            "mistakes.json:coyote jump after walking off A, then dash: green at the pillar": [
+              "floor:R"
+            ],
+            "mistakes.json:parent witness (exact actions)": [
+              "floor:R"
+            ],
+            "known-skips.json:green-super-skips-yellow-corridor": [
+              "floor:R"
+            ]
+          },
+          "referenceWithout": {
+            "status": "not run: removal invalidates spawn support"
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "spikes-0",
+          "kind": "spikes",
+          "index": 0,
+          "color": "Y",
+          "dir": "left",
+          "rect": [
+            17,
+            0,
+            1,
+            23
+          ],
+          "phaseMask": 5,
+          "observed": {
+            "reference": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:early dash (13 frames walking on A)": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late up-right dash after walking off A (24 frames)": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late first jump, down-right dash, late final jump": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:60-frame rest on A, then dash": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:60-frame rest on far blue ledge before turning green": [
+              "inactive-overlap:B"
+            ],
+            "mistakes.json:jump off A instead of dashing: turns green, yellow thorns live": [
+              "death-overlap:G"
+            ],
+            "mistakes.json:coyote jump after walking off A, then dash: green at the pillar": [
+              "death-overlap:G"
+            ],
+            "mistakes.json:parent witness (exact actions)": [
+              "death-overlap:G"
+            ],
+            "known-skips.json:green-super-skips-yellow-corridor": [
+              "death-overlap:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early dash (13 frames walking on A)",
+            "tolerances.json:late up-right dash after walking off A (24 frames)",
+            "tolerances.json:late first jump, down-right dash, late final jump",
+            "tolerances.json:60-frame rest on A, then dash",
+            "tolerances.json:60-frame rest on far blue ledge before turning green"
+          ]
+        },
+        {
+          "id": "spikes-1",
+          "kind": "spikes",
+          "index": 1,
+          "color": "Y",
+          "dir": "right",
+          "rect": [
+            19,
+            0,
+            1,
+            23
+          ],
+          "phaseMask": 5,
+          "observed": {
+            "reference": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:early dash (13 frames walking on A)": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late up-right dash after walking off A (24 frames)": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late first jump, down-right dash, late final jump": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:60-frame rest on A, then dash": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:60-frame rest on far blue ledge before turning green": [
+              "inactive-overlap:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early dash (13 frames walking on A)",
+            "tolerances.json:late up-right dash after walking off A (24 frames)",
+            "tolerances.json:late first jump, down-right dash, late final jump",
+            "tolerances.json:60-frame rest on A, then dash",
+            "tolerances.json:60-frame rest on far blue ledge before turning green"
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "id": "reference",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:early dash (13 frames walking on A)",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:late up-right dash after walking off A (24 frames)",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:late first jump, down-right dash, late final jump",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:60-frame rest on A, then dash",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:60-frame rest on far blue ledge before turning green",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "mistakes.json:jump off A instead of dashing: turns green, yellow thorns live",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "blue-through-yellow-pillar",
+            "far-blue-ledge",
+            "green-change-past-pillar"
+          ]
+        },
+        {
+          "id": "mistakes.json:coyote jump after walking off A, then dash: green at the pillar",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "blue-through-yellow-pillar",
+            "far-blue-ledge",
+            "green-change-past-pillar"
+          ]
+        },
+        {
+          "id": "mistakes.json:parent witness (exact actions)",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "blue-through-yellow-pillar",
+            "far-blue-ledge",
+            "green-change-past-pillar"
+          ]
+        },
+        {
+          "id": "known-skips.json:green-super-skips-yellow-corridor",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "blue-through-yellow-pillar",
+            "far-blue-ledge",
+            "green-change-past-pillar"
+          ]
+        }
+      ],
+      "searches": [
+        {
+          "level": 2,
+          "name": "保藍",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 22573,
+          "elapsedMs": 870,
+          "method": "reachable-prefix beam",
+          "depthFrames": 179,
+          "prefixStarts": 97,
+          "branchDepthFrames": 111,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "blue-through-yellow-pillar"
+          },
+          "target": "blue-through-yellow-pillar"
+        },
+        {
+          "level": 2,
+          "name": "保藍",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 22493,
+          "elapsedMs": 859,
+          "method": "reachable-prefix beam",
+          "depthFrames": 179,
+          "prefixStarts": 109,
+          "branchDepthFrames": 111,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "far-blue-ledge"
+          },
+          "target": "far-blue-ledge"
+        },
+        {
+          "level": 2,
+          "name": "保藍",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 22613,
+          "elapsedMs": 857,
+          "method": "reachable-prefix beam",
+          "depthFrames": 180,
+          "prefixStarts": 122,
+          "branchDepthFrames": 112,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "green-change-past-pillar"
+          },
+          "target": "green-change-past-pillar"
+        }
+      ],
+      "acceptedFindings": []
+    },
+    {
+      "level": 3,
+      "name": "色帶",
+      "parts": [
+        {
+          "id": "terrain-0",
+          "kind": "terrain",
+          "index": 0,
+          "color": "B",
+          "rect": [
+            12,
+            0,
+            1,
+            18
+          ],
+          "phaseMask": 2,
+          "observed": {
+            "reference": [
+              "inactive-overlap:R",
+              "jump-launch:B",
+              "left-face:B"
+            ],
+            "tolerances.json:long-climb": [
+              "inactive-overlap:R",
+              "jump-launch:B",
+              "left-face:B"
+            ],
+            "tolerances.json:late-dash-wait-60": [
+              "inactive-overlap:R",
+              "jump-launch:B",
+              "left-face:B"
+            ],
+            "tolerances.json:updash-past-band": [
+              "inactive-overlap:R",
+              "jump-launch:B",
+              "left-face:B"
+            ],
+            "mistakes.json:wall-jump-inside-green-band": [
+              "jump-launch:B",
+              "left-face:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "blue-wall-borrow",
+              "green-ledge",
+              "red-cross-above-band"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-1",
+          "kind": "terrain",
+          "index": 1,
+          "color": "R",
+          "rect": [
+            17,
+            7,
+            7,
+            1
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "floor:R"
+            ],
+            "tolerances.json:long-climb": [
+              "floor:R"
+            ],
+            "tolerances.json:late-dash-wait-60": [
+              "floor:R"
+            ],
+            "tolerances.json:updash-past-band": [
+              "floor:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:late-dash-wait-60"
+          ]
+        },
+        {
+          "id": "terrain-2",
+          "kind": "terrain",
+          "index": 2,
+          "color": "G",
+          "rect": [
+            3,
+            10,
+            6,
+            1
+          ],
+          "phaseMask": 4,
+          "observed": {
+            "reference": [
+              "floor:G"
+            ],
+            "tolerances.json:long-climb": [
+              "floor:G"
+            ],
+            "tolerances.json:late-dash-wait-60": [
+              "floor:G"
+            ],
+            "tolerances.json:updash-past-band": [
+              "floor:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "green-ledge",
+              "red-cross-above-band"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-3",
+          "kind": "terrain",
+          "index": 3,
+          "color": "R",
+          "rect": [
+            1,
+            20,
+            7,
+            2
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "floor:R"
+            ],
+            "tolerances.json:long-climb": [
+              "floor:R"
+            ],
+            "tolerances.json:late-dash-wait-60": [
+              "floor:R"
+            ],
+            "tolerances.json:updash-past-band": [
+              "floor:R"
+            ],
+            "mistakes.json:wall-jump-inside-green-band": [
+              "floor:R"
+            ]
+          },
+          "referenceWithout": {
+            "status": "not run: removal invalidates spawn support"
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "spikes-0",
+          "kind": "spikes",
+          "index": 0,
+          "color": "G",
+          "dir": "left",
+          "rect": [
+            11,
+            12,
+            1,
+            6
+          ],
+          "phaseMask": 4,
+          "observed": {
+            "reference": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:long-climb": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late-dash-wait-60": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:updash-past-band": [
+              "inactive-overlap:B"
+            ],
+            "mistakes.json:wall-jump-inside-green-band": [
+              "death-overlap:G",
+              "inactive-overlap:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:long-climb",
+            "tolerances.json:late-dash-wait-60",
+            "tolerances.json:updash-past-band"
+          ]
+        },
+        {
+          "id": "spikes-1",
+          "kind": "spikes",
+          "index": 1,
+          "color": "R",
+          "dir": "right",
+          "rect": [
+            13,
+            8,
+            1,
+            5
+          ],
+          "phaseMask": 1,
+          "observed": {},
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:long-climb",
+            "tolerances.json:late-dash-wait-60",
+            "tolerances.json:updash-past-band"
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "id": "reference",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:long-climb",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:late-dash-wait-60",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:updash-past-band",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "mistakes.json:wall-jump-inside-green-band",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "green-ledge",
+            "red-cross-above-band"
+          ]
+        }
+      ],
+      "searches": [
+        {
+          "level": 3,
+          "name": "色帶",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 13375,
+          "elapsedMs": 567,
+          "method": "reachable-prefix beam",
+          "depthFrames": 118,
+          "prefixStarts": 15,
+          "branchDepthFrames": 78,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "blue-wall-borrow"
+          },
+          "target": "blue-wall-borrow"
+        },
+        {
+          "level": 3,
+          "name": "色帶",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 53255,
+          "elapsedMs": 1770,
+          "method": "reachable-prefix beam",
+          "depthFrames": 482,
+          "prefixStarts": 54,
+          "branchDepthFrames": 317,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "green-ledge"
+          },
+          "target": "green-ledge"
+        },
+        {
+          "level": 3,
+          "name": "色帶",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 54175,
+          "elapsedMs": 1790,
+          "method": "reachable-prefix beam",
+          "depthFrames": 483,
+          "prefixStarts": 83,
+          "branchDepthFrames": 318,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "red-cross-above-band"
+          },
+          "target": "red-cross-above-band"
+        }
+      ],
+      "acceptedFindings": []
+    },
+    {
+      "level": 4,
+      "name": "雙門",
+      "parts": [
+        {
+          "id": "terrain-0",
+          "kind": "terrain",
+          "index": 0,
+          "color": "G",
+          "rect": [
+            22,
+            14,
+            4,
+            2
+          ],
+          "phaseMask": 4,
+          "observed": {
+            "reference": [
+              "floor:G"
+            ],
+            "tolerances.json:early-dash": [
+              "floor:G"
+            ],
+            "tolerances.json:early-takeoff-wait-60": [
+              "floor:G"
+            ],
+            "tolerances.json:upright-dash": [
+              "floor:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "green-platform",
+              "red-through-cyan"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-1",
+          "kind": "terrain",
+          "index": 1,
+          "color": "B",
+          "rect": [
+            9,
+            16,
+            5,
+            2
+          ],
+          "phaseMask": 2,
+          "observed": {
+            "reference": [
+              "floor:B"
+            ],
+            "tolerances.json:early-dash": [
+              "floor:B"
+            ],
+            "tolerances.json:early-takeoff-wait-60": [
+              "floor:B"
+            ],
+            "tolerances.json:upright-dash": [
+              "floor:B"
+            ],
+            "mistakes.json:dash-while-blue": [
+              "floor:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "blue-step",
+              "green-through-magenta",
+              "green-platform",
+              "red-through-cyan"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-2",
+          "kind": "terrain",
+          "index": 2,
+          "color": "R",
+          "rect": [
+            1,
+            18,
+            6,
+            2
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "floor:R"
+            ],
+            "tolerances.json:early-dash": [
+              "floor:R"
+            ],
+            "tolerances.json:early-takeoff-wait-60": [
+              "floor:R"
+            ],
+            "tolerances.json:upright-dash": [
+              "floor:R"
+            ],
+            "mistakes.json:dash-while-blue": [
+              "floor:R"
+            ]
+          },
+          "referenceWithout": {
+            "status": "not run: removal invalidates spawn support"
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-3",
+          "kind": "terrain",
+          "index": 3,
+          "color": "R",
+          "rect": [
+            32,
+            18,
+            6,
+            2
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "tolerances.json:early-dash": [
+              "floor:R"
+            ],
+            "tolerances.json:early-takeoff-wait-60": [
+              "floor:R"
+            ],
+            "tolerances.json:upright-dash": [
+              "floor:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash",
+            "tolerances.json:early-takeoff-wait-60",
+            "tolerances.json:upright-dash"
+          ]
+        },
+        {
+          "id": "spikes-0",
+          "kind": "spikes",
+          "index": 0,
+          "color": "M",
+          "dir": "left",
+          "rect": [
+            17,
+            9,
+            1,
+            11
+          ],
+          "phaseMask": 3,
+          "observed": {
+            "reference": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:early-dash": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:early-takeoff-wait-60": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:upright-dash": [
+              "inactive-overlap:G"
+            ],
+            "mistakes.json:dash-while-blue": [
+              "death-overlap:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash",
+            "tolerances.json:early-takeoff-wait-60",
+            "tolerances.json:upright-dash"
+          ]
+        },
+        {
+          "id": "spikes-1",
+          "kind": "spikes",
+          "index": 1,
+          "color": "M",
+          "dir": "right",
+          "rect": [
+            18,
+            9,
+            1,
+            11
+          ],
+          "phaseMask": 3,
+          "observed": {
+            "reference": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:early-dash": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:early-takeoff-wait-60": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:upright-dash": [
+              "inactive-overlap:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash",
+            "tolerances.json:early-takeoff-wait-60",
+            "tolerances.json:upright-dash"
+          ]
+        },
+        {
+          "id": "spikes-2",
+          "kind": "spikes",
+          "index": 2,
+          "color": "C",
+          "dir": "left",
+          "rect": [
+            28,
+            9,
+            1,
+            11
+          ],
+          "phaseMask": 6,
+          "observed": {
+            "reference": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:early-dash": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:early-takeoff-wait-60": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:upright-dash": [
+              "inactive-overlap:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash",
+            "tolerances.json:early-takeoff-wait-60",
+            "tolerances.json:upright-dash"
+          ]
+        },
+        {
+          "id": "spikes-3",
+          "kind": "spikes",
+          "index": 3,
+          "color": "C",
+          "dir": "right",
+          "rect": [
+            29,
+            9,
+            1,
+            11
+          ],
+          "phaseMask": 6,
+          "observed": {
+            "reference": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:early-dash": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:early-takeoff-wait-60": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:upright-dash": [
+              "inactive-overlap:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash",
+            "tolerances.json:early-takeoff-wait-60",
+            "tolerances.json:upright-dash"
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "id": "reference",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:early-dash",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:early-takeoff-wait-60",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:upright-dash",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "mistakes.json:dash-while-blue",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "green-through-magenta",
+            "green-platform",
+            "red-through-cyan"
+          ]
+        }
+      ],
+      "searches": [
+        {
+          "level": 4,
+          "name": "雙門",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 12287,
+          "elapsedMs": 613,
+          "method": "reachable-prefix beam",
+          "depthFrames": 119,
+          "prefixStarts": 15,
+          "branchDepthFrames": 73,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "blue-step"
+          },
+          "target": "blue-step"
+        },
+        {
+          "level": 4,
+          "name": "雙門",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 15327,
+          "elapsedMs": 746,
+          "method": "reachable-prefix beam",
+          "depthFrames": 140,
+          "prefixStarts": 49,
+          "branchDepthFrames": 82,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "green-through-magenta"
+          },
+          "target": "green-through-magenta"
+        },
+        {
+          "level": 4,
+          "name": "雙門",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 17167,
+          "elapsedMs": 781,
+          "method": "reachable-prefix beam",
+          "depthFrames": 169,
+          "prefixStarts": 57,
+          "branchDepthFrames": 99,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "green-platform"
+          },
+          "target": "green-platform"
+        },
+        {
+          "level": 4,
+          "name": "雙門",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 18367,
+          "elapsedMs": 804,
+          "method": "reachable-prefix beam",
+          "depthFrames": 197,
+          "prefixStarts": 78,
+          "branchDepthFrames": 99,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "red-through-cyan"
+          },
+          "target": "red-through-cyan"
+        }
+      ],
+      "acceptedFindings": []
+    },
+    {
+      "level": 5,
+      "name": "五跳",
+      "parts": [
+        {
+          "id": "terrain-0",
+          "kind": "terrain",
+          "index": 0,
+          "color": "G",
+          "rect": [
+            8,
+            0,
+            1,
+            12
+          ],
+          "phaseMask": 4,
+          "observed": {
+            "reference": [
+              "jump-launch:G",
+              "right-face:G"
+            ],
+            "tolerances.json:long-climb-first-wall": [
+              "jump-launch:G",
+              "right-face:G"
+            ],
+            "tolerances.json:hold-red-wall-60": [
+              "jump-launch:G",
+              "right-face:G"
+            ],
+            "tolerances.json:quick-last-jump": [
+              "jump-launch:G",
+              "right-face:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "green-relay",
+              "red-relay",
+              "blue-back"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-1",
+          "kind": "terrain",
+          "index": 1,
+          "color": "B",
+          "rect": [
+            13,
+            0,
+            1,
+            20
+          ],
+          "phaseMask": 2,
+          "observed": {
+            "reference": [
+              "inactive-overlap:R",
+              "jump-launch:B",
+              "left-face:B",
+              "right-face:B"
+            ],
+            "tolerances.json:long-climb-first-wall": [
+              "inactive-overlap:R",
+              "jump-launch:B",
+              "left-face:B",
+              "right-face:B"
+            ],
+            "tolerances.json:hold-red-wall-60": [
+              "inactive-overlap:R",
+              "jump-launch:B",
+              "left-face:B",
+              "right-face:B"
+            ],
+            "tolerances.json:quick-last-jump": [
+              "inactive-overlap:R",
+              "jump-launch:B",
+              "left-face:B",
+              "right-face:B"
+            ],
+            "mistakes.json:leave-blue-wall-in-green-band": [
+              "jump-launch:B",
+              "left-face:B"
+            ],
+            "known-skips.json:two-jumps-skip-wall-relay": [
+              "left-face:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "blue-front",
+              "green-relay",
+              "red-relay",
+              "blue-back"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-2",
+          "kind": "terrain",
+          "index": 2,
+          "color": "R",
+          "rect": [
+            19,
+            0,
+            1,
+            15
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "inactive-overlap:G",
+              "jump-launch:R",
+              "left-face:R"
+            ],
+            "tolerances.json:long-climb-first-wall": [
+              "inactive-overlap:G",
+              "jump-launch:R",
+              "left-face:R"
+            ],
+            "tolerances.json:hold-red-wall-60": [
+              "inactive-overlap:G",
+              "jump-launch:R",
+              "left-face:R"
+            ],
+            "tolerances.json:quick-last-jump": [
+              "inactive-overlap:G",
+              "jump-launch:R",
+              "left-face:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "red-relay",
+              "blue-back"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-3",
+          "kind": "terrain",
+          "index": 3,
+          "color": "G",
+          "rect": [
+            22,
+            10,
+            6,
+            2
+          ],
+          "phaseMask": 4,
+          "observed": {
+            "reference": [
+              "floor:G"
+            ],
+            "tolerances.json:long-climb-first-wall": [
+              "floor:G"
+            ],
+            "tolerances.json:hold-red-wall-60": [
+              "floor:G"
+            ],
+            "tolerances.json:quick-last-jump": [
+              "floor:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-4",
+          "kind": "terrain",
+          "index": 4,
+          "color": "R",
+          "rect": [
+            1,
+            20,
+            8,
+            2
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "floor:R"
+            ],
+            "tolerances.json:long-climb-first-wall": [
+              "floor:R"
+            ],
+            "tolerances.json:hold-red-wall-60": [
+              "floor:R"
+            ],
+            "tolerances.json:quick-last-jump": [
+              "floor:R"
+            ],
+            "mistakes.json:leave-blue-wall-in-green-band": [
+              "floor:R"
+            ],
+            "known-skips.json:two-jumps-skip-wall-relay": [
+              "floor:R"
+            ]
+          },
+          "referenceWithout": {
+            "status": "not run: removal invalidates spawn support"
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "spikes-0",
+          "kind": "spikes",
+          "index": 0,
+          "color": "G",
+          "dir": "left",
+          "rect": [
+            12,
+            14,
+            1,
+            6
+          ],
+          "phaseMask": 4,
+          "observed": {
+            "reference": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:long-climb-first-wall": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:hold-red-wall-60": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:quick-last-jump": [
+              "inactive-overlap:B"
+            ],
+            "mistakes.json:leave-blue-wall-in-green-band": [
+              "death-overlap:G",
+              "inactive-overlap:B"
+            ],
+            "known-skips.json:two-jumps-skip-wall-relay": [
+              "inactive-overlap:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:long-climb-first-wall",
+            "tolerances.json:hold-red-wall-60",
+            "tolerances.json:quick-last-jump"
+          ]
+        },
+        {
+          "id": "spikes-1",
+          "kind": "spikes",
+          "index": 1,
+          "color": "C",
+          "dir": "left",
+          "rect": [
+            12,
+            0,
+            1,
+            10
+          ],
+          "phaseMask": 6,
+          "observed": {
+            "reference": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:long-climb-first-wall": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:hold-red-wall-60": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:quick-last-jump": [
+              "inactive-overlap:R"
+            ],
+            "known-skips.json:two-jumps-skip-wall-relay": [
+              "death-overlap:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [
+            {
+              "route": "known-skips.json:two-jumps-skip-wall-relay",
+              "won": true,
+              "deaths": 0,
+              "missing": [
+                "green-relay",
+                "red-relay",
+                "blue-back"
+              ]
+            }
+          ],
+          "survivingVariants": [
+            "tolerances.json:long-climb-first-wall",
+            "tolerances.json:hold-red-wall-60",
+            "tolerances.json:quick-last-jump"
+          ]
+        },
+        {
+          "id": "spikes-2",
+          "kind": "spikes",
+          "index": 2,
+          "color": "Y",
+          "dir": "right",
+          "rect": [
+            14,
+            10,
+            1,
+            10
+          ],
+          "phaseMask": 5,
+          "observed": {},
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:long-climb-first-wall",
+            "tolerances.json:hold-red-wall-60",
+            "tolerances.json:quick-last-jump"
+          ]
+        },
+        {
+          "id": "spikes-3",
+          "kind": "spikes",
+          "index": 3,
+          "color": "G",
+          "dir": "right",
+          "rect": [
+            20,
+            7,
+            1,
+            8
+          ],
+          "phaseMask": 4,
+          "observed": {},
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:long-climb-first-wall",
+            "tolerances.json:hold-red-wall-60",
+            "tolerances.json:quick-last-jump"
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "id": "reference",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:long-climb-first-wall",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:hold-red-wall-60",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:quick-last-jump",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "mistakes.json:leave-blue-wall-in-green-band",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "green-relay",
+            "red-relay",
+            "blue-back"
+          ]
+        },
+        {
+          "id": "known-skips.json:two-jumps-skip-wall-relay",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "green-relay",
+            "red-relay",
+            "blue-back"
+          ]
+        }
+      ],
+      "searches": [
+        {
+          "level": 5,
+          "name": "五跳",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 13760,
+          "elapsedMs": 608,
+          "method": "reachable-prefix beam",
+          "depthFrames": 124,
+          "prefixStarts": 18,
+          "branchDepthFrames": 78,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "blue-front"
+          },
+          "target": "blue-front"
+        },
+        {
+          "level": 5,
+          "name": "五跳",
+          "status": "no witness within budget",
+          "reason": "state budget",
+          "states": 80000,
+          "elapsedMs": 2679,
+          "method": "reachable-prefix beam",
+          "depthFrames": 592,
+          "prefixStarts": 55,
+          "branchDepthFrames": 486,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "green-relay"
+          },
+          "target": "green-relay"
+        },
+        {
+          "level": 5,
+          "name": "五跳",
+          "status": "no witness within budget",
+          "reason": "time budget",
+          "states": 79869,
+          "elapsedMs": 3000,
+          "method": "reachable-prefix beam",
+          "depthFrames": 606,
+          "prefixStarts": 86,
+          "branchDepthFrames": 492,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "red-relay"
+          },
+          "target": "red-relay"
+        },
+        {
+          "level": 5,
+          "name": "五跳",
+          "status": "no witness within budget",
+          "reason": "state budget",
+          "states": 80000,
+          "elapsedMs": 2824,
+          "method": "reachable-prefix beam",
+          "depthFrames": 690,
+          "prefixStarts": 107,
+          "branchDepthFrames": 492,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "blue-back"
+          },
+          "target": "blue-back"
+        }
+      ],
+      "acceptedFindings": []
+    },
+    {
+      "level": 6,
+      "name": "換色台",
+      "parts": [
+        {
+          "id": "terrain-0",
+          "kind": "terrain",
+          "index": 0,
+          "color": "W",
+          "rect": [
+            0,
+            0,
+            40,
+            4
+          ],
+          "phaseMask": 7,
+          "observed": {},
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash-clear-cyan-rest-60",
+            "tolerances.json:rest-60-red-and-blue",
+            "tolerances.json:late-green-early-red"
+          ]
+        },
+        {
+          "id": "terrain-1",
+          "kind": "terrain",
+          "index": 1,
+          "color": "R",
+          "rect": [
+            35,
+            14,
+            5,
+            2
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "tolerances.json:late-green-early-red": [
+              "floor:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash-clear-cyan-rest-60",
+            "tolerances.json:rest-60-red-and-blue"
+          ]
+        },
+        {
+          "id": "terrain-2",
+          "kind": "terrain",
+          "index": 2,
+          "color": "R",
+          "rect": [
+            1,
+            15,
+            7,
+            2
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "floor:R"
+            ],
+            "tolerances.json:early-dash-clear-cyan-rest-60": [
+              "floor:R"
+            ],
+            "tolerances.json:rest-60-red-and-blue": [
+              "floor:R"
+            ],
+            "tolerances.json:late-green-early-red": [
+              "floor:R"
+            ],
+            "mistakes.json:jump-from-magenta-while-red": [
+              "floor:R"
+            ]
+          },
+          "referenceWithout": {
+            "status": "not run: removal invalidates spawn support"
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-3",
+          "kind": "terrain",
+          "index": 3,
+          "color": "G",
+          "rect": [
+            26,
+            16,
+            5,
+            2
+          ],
+          "phaseMask": 4,
+          "observed": {
+            "reference": [
+              "floor:G"
+            ],
+            "tolerances.json:early-dash-clear-cyan-rest-60": [
+              "floor:G"
+            ],
+            "tolerances.json:rest-60-red-and-blue": [
+              "floor:G"
+            ],
+            "tolerances.json:late-green-early-red": [
+              "floor:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "red-through-second-cyan"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-4",
+          "kind": "terrain",
+          "index": 4,
+          "color": "M",
+          "rect": [
+            13,
+            18,
+            7,
+            2
+          ],
+          "phaseMask": 3,
+          "observed": {
+            "reference": [
+              "floor:B",
+              "floor:R"
+            ],
+            "tolerances.json:early-dash-clear-cyan-rest-60": [
+              "floor:B",
+              "floor:R"
+            ],
+            "tolerances.json:rest-60-red-and-blue": [
+              "floor:B",
+              "floor:R"
+            ],
+            "tolerances.json:late-green-early-red": [
+              "floor:B",
+              "floor:R"
+            ],
+            "mistakes.json:jump-from-magenta-while-red": [
+              "floor:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "magenta-platform-red",
+              "magenta-platform-blue",
+              "green-through-magenta",
+              "red-through-second-cyan"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "spikes-0",
+          "kind": "spikes",
+          "index": 0,
+          "color": "C",
+          "dir": "left",
+          "rect": [
+            9,
+            7,
+            1,
+            15
+          ],
+          "phaseMask": 6,
+          "observed": {
+            "reference": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:early-dash-clear-cyan-rest-60": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:rest-60-red-and-blue": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:late-green-early-red": [
+              "inactive-overlap:R"
+            ],
+            "mistakes.json:jump-from-magenta-while-red": [
+              "inactive-overlap:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash-clear-cyan-rest-60",
+            "tolerances.json:rest-60-red-and-blue",
+            "tolerances.json:late-green-early-red"
+          ]
+        },
+        {
+          "id": "spikes-1",
+          "kind": "spikes",
+          "index": 1,
+          "color": "C",
+          "dir": "right",
+          "rect": [
+            10,
+            7,
+            1,
+            15
+          ],
+          "phaseMask": 6,
+          "observed": {
+            "reference": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:early-dash-clear-cyan-rest-60": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:rest-60-red-and-blue": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:late-green-early-red": [
+              "inactive-overlap:R"
+            ],
+            "mistakes.json:jump-from-magenta-while-red": [
+              "inactive-overlap:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash-clear-cyan-rest-60",
+            "tolerances.json:rest-60-red-and-blue",
+            "tolerances.json:late-green-early-red"
+          ]
+        },
+        {
+          "id": "spikes-2",
+          "kind": "spikes",
+          "index": 2,
+          "color": "C",
+          "dir": "up",
+          "rect": [
+            13,
+            17,
+            3,
+            1
+          ],
+          "phaseMask": 6,
+          "observed": {
+            "reference": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:early-dash-clear-cyan-rest-60": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:rest-60-red-and-blue": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:late-green-early-red": [
+              "inactive-overlap:R"
+            ],
+            "mistakes.json:jump-from-magenta-while-red": [
+              "inactive-overlap:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash-clear-cyan-rest-60",
+            "tolerances.json:rest-60-red-and-blue",
+            "tolerances.json:late-green-early-red"
+          ]
+        },
+        {
+          "id": "spikes-3",
+          "kind": "spikes",
+          "index": 3,
+          "color": "M",
+          "dir": "left",
+          "rect": [
+            22,
+            7,
+            1,
+            11
+          ],
+          "phaseMask": 3,
+          "observed": {
+            "reference": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:early-dash-clear-cyan-rest-60": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:rest-60-red-and-blue": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:late-green-early-red": [
+              "inactive-overlap:G"
+            ],
+            "mistakes.json:jump-from-magenta-while-red": [
+              "death-overlap:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash-clear-cyan-rest-60",
+            "tolerances.json:rest-60-red-and-blue",
+            "tolerances.json:late-green-early-red"
+          ]
+        },
+        {
+          "id": "spikes-4",
+          "kind": "spikes",
+          "index": 4,
+          "color": "M",
+          "dir": "right",
+          "rect": [
+            23,
+            7,
+            1,
+            11
+          ],
+          "phaseMask": 3,
+          "observed": {
+            "reference": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:early-dash-clear-cyan-rest-60": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:rest-60-red-and-blue": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:late-green-early-red": [
+              "inactive-overlap:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash-clear-cyan-rest-60",
+            "tolerances.json:rest-60-red-and-blue",
+            "tolerances.json:late-green-early-red"
+          ]
+        },
+        {
+          "id": "spikes-5",
+          "kind": "spikes",
+          "index": 5,
+          "color": "C",
+          "dir": "left",
+          "rect": [
+            32,
+            7,
+            1,
+            11
+          ],
+          "phaseMask": 6,
+          "observed": {
+            "reference": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:early-dash-clear-cyan-rest-60": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:rest-60-red-and-blue": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:late-green-early-red": [
+              "inactive-overlap:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash-clear-cyan-rest-60",
+            "tolerances.json:rest-60-red-and-blue",
+            "tolerances.json:late-green-early-red"
+          ]
+        },
+        {
+          "id": "spikes-6",
+          "kind": "spikes",
+          "index": 6,
+          "color": "C",
+          "dir": "right",
+          "rect": [
+            33,
+            7,
+            1,
+            11
+          ],
+          "phaseMask": 6,
+          "observed": {
+            "reference": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:early-dash-clear-cyan-rest-60": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:rest-60-red-and-blue": [
+              "inactive-overlap:R"
+            ],
+            "tolerances.json:late-green-early-red": [
+              "inactive-overlap:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash-clear-cyan-rest-60",
+            "tolerances.json:rest-60-red-and-blue",
+            "tolerances.json:late-green-early-red"
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "id": "reference",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:early-dash-clear-cyan-rest-60",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:rest-60-red-and-blue",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:late-green-early-red",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "mistakes.json:jump-from-magenta-while-red",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "magenta-platform-blue",
+            "green-through-magenta",
+            "red-through-second-cyan"
+          ]
+        }
+      ],
+      "searches": [
+        {
+          "level": 6,
+          "name": "換色台",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 20630,
+          "elapsedMs": 1252,
+          "method": "reachable-prefix beam",
+          "depthFrames": 131,
+          "prefixStarts": 25,
+          "branchDepthFrames": 115,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "red-through-first-cyan"
+          },
+          "target": "red-through-first-cyan"
+        },
+        {
+          "level": 6,
+          "name": "換色台",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 19110,
+          "elapsedMs": 1237,
+          "method": "reachable-prefix beam",
+          "depthFrames": 124,
+          "prefixStarts": 35,
+          "branchDepthFrames": 108,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "magenta-platform-red"
+          },
+          "target": "magenta-platform-red"
+        },
+        {
+          "level": 6,
+          "name": "換色台",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 35590,
+          "elapsedMs": 2087,
+          "method": "reachable-prefix beam",
+          "depthFrames": 238,
+          "prefixStarts": 61,
+          "branchDepthFrames": 222,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "magenta-platform-blue"
+          },
+          "target": "magenta-platform-blue"
+        },
+        {
+          "level": 6,
+          "name": "換色台",
+          "status": "no witness within budget",
+          "reason": "frontier exhausted (quantized beam)",
+          "states": 19830,
+          "elapsedMs": 1238,
+          "method": "reachable-prefix beam",
+          "depthFrames": 346,
+          "prefixStarts": 85,
+          "branchDepthFrames": 106,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "green-through-magenta"
+          },
+          "target": "green-through-magenta"
+        },
+        {
+          "level": 6,
+          "name": "換色台",
+          "status": "no witness within budget",
+          "reason": "time budget",
+          "states": 56810,
+          "elapsedMs": 3000,
+          "method": "reachable-prefix beam",
+          "depthFrames": 651,
+          "prefixStarts": 113,
+          "branchDepthFrames": 336,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "red-through-second-cyan"
+          },
+          "target": "red-through-second-cyan"
+        }
+      ],
+      "acceptedFindings": []
+    },
+    {
+      "level": 7,
+      "name": "歸途",
+      "parts": [
+        {
+          "id": "terrain-0",
+          "kind": "terrain",
+          "index": 0,
+          "color": "G",
+          "rect": [
+            38,
+            0,
+            2,
+            20
+          ],
+          "phaseMask": 4,
+          "observed": {
+            "reference": [
+              "jump-launch:G",
+              "left-face:G"
+            ],
+            "tolerances.json:rest-60-on-far-blue-floor": [
+              "jump-launch:G",
+              "left-face:G"
+            ],
+            "tolerances.json:rest-60-on-first-blue-ledge": [
+              "jump-launch:G",
+              "left-face:G"
+            ],
+            "tolerances.json:early-dash-near-ledge-start": [
+              "jump-launch:G",
+              "left-face:G"
+            ],
+            "tolerances.json:late-dash-at-ledge-lip": [
+              "jump-launch:G",
+              "left-face:G"
+            ],
+            "tolerances.json:short-climb-low-walljump": [
+              "jump-launch:G",
+              "left-face:G"
+            ],
+            "tolerances.json:long-climb-high-walljump": [
+              "jump-launch:G",
+              "left-face:G"
+            ],
+            "tolerances.json:far-left-takeoff-from-red": [
+              "jump-launch:G",
+              "left-face:G"
+            ],
+            "tolerances.json:late-air-dash-final": [
+              "jump-launch:G",
+              "left-face:G"
+            ],
+            "mistakes.json:walljump-inside-red-band": [
+              "jump-launch:G",
+              "left-face:G"
+            ],
+            "mistakes.json:final-jump-without-dash": [
+              "jump-launch:G",
+              "left-face:G"
+            ],
+            "accepted-finale-materialization.json": [
+              "jump-launch:G",
+              "left-face:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "far-green-wall",
+              "upper-red-landing",
+              "green-through-magenta"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-1",
+          "kind": "terrain",
+          "index": 1,
+          "color": "G",
+          "rect": [
+            8,
+            4,
+            5,
+            2
+          ],
+          "phaseMask": 4,
+          "observed": {},
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:rest-60-on-far-blue-floor",
+            "tolerances.json:rest-60-on-first-blue-ledge",
+            "tolerances.json:early-dash-near-ledge-start",
+            "tolerances.json:late-dash-at-ledge-lip",
+            "tolerances.json:short-climb-low-walljump",
+            "tolerances.json:long-climb-high-walljump",
+            "tolerances.json:far-left-takeoff-from-red",
+            "tolerances.json:late-air-dash-final",
+            "accepted-finale-materialization.json"
+          ]
+        },
+        {
+          "id": "terrain-2",
+          "kind": "terrain",
+          "index": 2,
+          "color": "B",
+          "rect": [
+            18,
+            5,
+            5,
+            2
+          ],
+          "phaseMask": 2,
+          "observed": {
+            "reference": [
+              "floor:B"
+            ],
+            "tolerances.json:rest-60-on-far-blue-floor": [
+              "floor:B"
+            ],
+            "tolerances.json:rest-60-on-first-blue-ledge": [
+              "floor:B"
+            ],
+            "tolerances.json:early-dash-near-ledge-start": [
+              "floor:B"
+            ],
+            "tolerances.json:late-dash-at-ledge-lip": [
+              "floor:B"
+            ],
+            "tolerances.json:short-climb-low-walljump": [
+              "floor:B"
+            ],
+            "tolerances.json:long-climb-high-walljump": [
+              "floor:B"
+            ],
+            "tolerances.json:far-left-takeoff-from-red": [
+              "floor:B",
+              "right-face:B"
+            ],
+            "tolerances.json:late-air-dash-final": [
+              "floor:B"
+            ],
+            "mistakes.json:final-jump-without-dash": [
+              "floor:B"
+            ],
+            "accepted-finale-materialization.json": [
+              "deferred-materialization:B",
+              "floor:B",
+              "inactive-overlap:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "green-through-magenta"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-3",
+          "kind": "terrain",
+          "index": 3,
+          "color": "R",
+          "rect": [
+            24,
+            8,
+            10,
+            2
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "floor:R"
+            ],
+            "tolerances.json:rest-60-on-far-blue-floor": [
+              "floor:R"
+            ],
+            "tolerances.json:rest-60-on-first-blue-ledge": [
+              "floor:R"
+            ],
+            "tolerances.json:early-dash-near-ledge-start": [
+              "floor:R"
+            ],
+            "tolerances.json:late-dash-at-ledge-lip": [
+              "floor:R"
+            ],
+            "tolerances.json:short-climb-low-walljump": [
+              "floor:R"
+            ],
+            "tolerances.json:long-climb-high-walljump": [
+              "floor:R"
+            ],
+            "tolerances.json:far-left-takeoff-from-red": [
+              "floor:R"
+            ],
+            "tolerances.json:late-air-dash-final": [
+              "floor:R"
+            ],
+            "mistakes.json:final-jump-without-dash": [
+              "floor:R"
+            ],
+            "accepted-finale-materialization.json": [
+              "floor:R"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "upper-red-landing",
+              "green-through-magenta"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-4",
+          "kind": "terrain",
+          "index": 4,
+          "color": "W",
+          "rect": [
+            0,
+            11,
+            35,
+            2
+          ],
+          "phaseMask": 7,
+          "observed": {},
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:rest-60-on-far-blue-floor",
+            "tolerances.json:rest-60-on-first-blue-ledge",
+            "tolerances.json:early-dash-near-ledge-start",
+            "tolerances.json:late-dash-at-ledge-lip",
+            "tolerances.json:short-climb-low-walljump",
+            "tolerances.json:long-climb-high-walljump",
+            "tolerances.json:far-left-takeoff-from-red",
+            "tolerances.json:late-air-dash-final",
+            "accepted-finale-materialization.json"
+          ]
+        },
+        {
+          "id": "terrain-5",
+          "kind": "terrain",
+          "index": 5,
+          "color": "W",
+          "rect": [
+            17,
+            13,
+            8,
+            3
+          ],
+          "phaseMask": 7,
+          "observed": {
+            "mistakes.json:jump-across-gap-into-corridor": [
+              "left-face:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:rest-60-on-far-blue-floor",
+            "tolerances.json:rest-60-on-first-blue-ledge",
+            "tolerances.json:early-dash-near-ledge-start",
+            "tolerances.json:late-dash-at-ledge-lip",
+            "tolerances.json:short-climb-low-walljump",
+            "tolerances.json:long-climb-high-walljump",
+            "tolerances.json:far-left-takeoff-from-red",
+            "tolerances.json:late-air-dash-final",
+            "accepted-finale-materialization.json"
+          ]
+        },
+        {
+          "id": "terrain-6",
+          "kind": "terrain",
+          "index": 6,
+          "color": "B",
+          "rect": [
+            9,
+            18,
+            5,
+            2
+          ],
+          "phaseMask": 2,
+          "observed": {
+            "reference": [
+              "floor:B"
+            ],
+            "tolerances.json:rest-60-on-far-blue-floor": [
+              "floor:B"
+            ],
+            "tolerances.json:rest-60-on-first-blue-ledge": [
+              "floor:B"
+            ],
+            "tolerances.json:early-dash-near-ledge-start": [
+              "floor:B"
+            ],
+            "tolerances.json:late-dash-at-ledge-lip": [
+              "floor:B"
+            ],
+            "tolerances.json:short-climb-low-walljump": [
+              "floor:B"
+            ],
+            "tolerances.json:long-climb-high-walljump": [
+              "floor:B"
+            ],
+            "tolerances.json:far-left-takeoff-from-red": [
+              "floor:B"
+            ],
+            "tolerances.json:late-air-dash-final": [
+              "floor:B"
+            ],
+            "mistakes.json:jump-across-gap-into-corridor": [
+              "floor:B"
+            ],
+            "mistakes.json:walljump-inside-red-band": [
+              "floor:B"
+            ],
+            "mistakes.json:jump-inside-corridor": [
+              "floor:B"
+            ],
+            "mistakes.json:final-jump-without-dash": [
+              "floor:B"
+            ],
+            "known-skips.json:green-super-skips-outbound-yellow": [
+              "floor:B"
+            ],
+            "accepted-finale-materialization.json": [
+              "floor:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "blue-through-yellow-corridor",
+              "far-green-wall",
+              "upper-red-landing",
+              "green-through-magenta"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:early-dash-near-ledge-start"
+          ]
+        },
+        {
+          "id": "terrain-7",
+          "kind": "terrain",
+          "index": 7,
+          "color": "W",
+          "rect": [
+            17,
+            18,
+            8,
+            5
+          ],
+          "phaseMask": 7,
+          "observed": {
+            "reference": [
+              "floor:B"
+            ],
+            "tolerances.json:rest-60-on-far-blue-floor": [
+              "floor:B"
+            ],
+            "tolerances.json:rest-60-on-first-blue-ledge": [
+              "floor:B"
+            ],
+            "tolerances.json:early-dash-near-ledge-start": [
+              "floor:B"
+            ],
+            "tolerances.json:late-dash-at-ledge-lip": [
+              "floor:B",
+              "left-face:B"
+            ],
+            "tolerances.json:short-climb-low-walljump": [
+              "floor:B"
+            ],
+            "tolerances.json:long-climb-high-walljump": [
+              "floor:B"
+            ],
+            "tolerances.json:far-left-takeoff-from-red": [
+              "floor:B"
+            ],
+            "tolerances.json:late-air-dash-final": [
+              "floor:B"
+            ],
+            "mistakes.json:walljump-inside-red-band": [
+              "floor:B"
+            ],
+            "mistakes.json:jump-inside-corridor": [
+              "floor:B"
+            ],
+            "mistakes.json:final-jump-without-dash": [
+              "floor:B"
+            ],
+            "accepted-finale-materialization.json": [
+              "floor:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "far-green-wall",
+              "upper-red-landing",
+              "green-through-magenta"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-8",
+          "kind": "terrain",
+          "index": 8,
+          "color": "B",
+          "rect": [
+            25,
+            18,
+            12,
+            2
+          ],
+          "phaseMask": 2,
+          "observed": {
+            "reference": [
+              "floor:B"
+            ],
+            "tolerances.json:rest-60-on-far-blue-floor": [
+              "floor:B"
+            ],
+            "tolerances.json:rest-60-on-first-blue-ledge": [
+              "floor:B"
+            ],
+            "tolerances.json:early-dash-near-ledge-start": [
+              "floor:B"
+            ],
+            "tolerances.json:late-dash-at-ledge-lip": [
+              "floor:B"
+            ],
+            "tolerances.json:short-climb-low-walljump": [
+              "floor:B"
+            ],
+            "tolerances.json:long-climb-high-walljump": [
+              "floor:B"
+            ],
+            "tolerances.json:far-left-takeoff-from-red": [
+              "floor:B"
+            ],
+            "tolerances.json:late-air-dash-final": [
+              "floor:B"
+            ],
+            "mistakes.json:walljump-inside-red-band": [
+              "floor:B"
+            ],
+            "mistakes.json:final-jump-without-dash": [
+              "floor:B"
+            ],
+            "accepted-finale-materialization.json": [
+              "floor:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": false,
+            "deaths": 1,
+            "missing": [
+              "far-green-wall",
+              "upper-red-landing",
+              "green-through-magenta"
+            ]
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "terrain-9",
+          "kind": "terrain",
+          "index": 9,
+          "color": "R",
+          "rect": [
+            1,
+            20,
+            6,
+            2
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "floor:R"
+            ],
+            "tolerances.json:rest-60-on-far-blue-floor": [
+              "floor:R"
+            ],
+            "tolerances.json:rest-60-on-first-blue-ledge": [
+              "floor:R"
+            ],
+            "tolerances.json:early-dash-near-ledge-start": [
+              "floor:R"
+            ],
+            "tolerances.json:late-dash-at-ledge-lip": [
+              "floor:R"
+            ],
+            "tolerances.json:short-climb-low-walljump": [
+              "floor:R"
+            ],
+            "tolerances.json:long-climb-high-walljump": [
+              "floor:R"
+            ],
+            "tolerances.json:far-left-takeoff-from-red": [
+              "floor:R"
+            ],
+            "tolerances.json:late-air-dash-final": [
+              "floor:R"
+            ],
+            "mistakes.json:jump-across-gap-into-corridor": [
+              "floor:R"
+            ],
+            "mistakes.json:walljump-inside-red-band": [
+              "floor:R"
+            ],
+            "mistakes.json:jump-inside-corridor": [
+              "floor:R"
+            ],
+            "mistakes.json:final-jump-without-dash": [
+              "floor:R"
+            ],
+            "known-skips.json:green-super-skips-outbound-yellow": [
+              "floor:R"
+            ],
+            "accepted-finale-materialization.json": [
+              "floor:R"
+            ]
+          },
+          "referenceWithout": {
+            "status": "not run: removal invalidates spawn support"
+          },
+          "unlocks": [],
+          "survivingVariants": []
+        },
+        {
+          "id": "spikes-0",
+          "kind": "spikes",
+          "index": 0,
+          "color": "Y",
+          "dir": "up",
+          "rect": [
+            17,
+            17,
+            8,
+            1
+          ],
+          "phaseMask": 5,
+          "observed": {
+            "reference": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:rest-60-on-far-blue-floor": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:rest-60-on-first-blue-ledge": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:early-dash-near-ledge-start": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late-dash-at-ledge-lip": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:short-climb-low-walljump": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:long-climb-high-walljump": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:far-left-takeoff-from-red": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late-air-dash-final": [
+              "inactive-overlap:B"
+            ],
+            "mistakes.json:walljump-inside-red-band": [
+              "inactive-overlap:B"
+            ],
+            "mistakes.json:jump-inside-corridor": [
+              "death-overlap:G",
+              "inactive-overlap:B"
+            ],
+            "mistakes.json:final-jump-without-dash": [
+              "inactive-overlap:B"
+            ],
+            "accepted-finale-materialization.json": [
+              "inactive-overlap:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:rest-60-on-far-blue-floor",
+            "tolerances.json:rest-60-on-first-blue-ledge",
+            "tolerances.json:early-dash-near-ledge-start",
+            "tolerances.json:late-dash-at-ledge-lip",
+            "tolerances.json:short-climb-low-walljump",
+            "tolerances.json:long-climb-high-walljump",
+            "tolerances.json:far-left-takeoff-from-red",
+            "tolerances.json:late-air-dash-final",
+            "accepted-finale-materialization.json"
+          ]
+        },
+        {
+          "id": "spikes-1",
+          "kind": "spikes",
+          "index": 1,
+          "color": "Y",
+          "dir": "down",
+          "rect": [
+            17,
+            16,
+            8,
+            1
+          ],
+          "phaseMask": 5,
+          "observed": {
+            "reference": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:rest-60-on-far-blue-floor": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:rest-60-on-first-blue-ledge": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:early-dash-near-ledge-start": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late-dash-at-ledge-lip": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:short-climb-low-walljump": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:long-climb-high-walljump": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:far-left-takeoff-from-red": [
+              "inactive-overlap:B"
+            ],
+            "tolerances.json:late-air-dash-final": [
+              "inactive-overlap:B"
+            ],
+            "mistakes.json:jump-across-gap-into-corridor": [
+              "death-overlap:G"
+            ],
+            "mistakes.json:walljump-inside-red-band": [
+              "inactive-overlap:B"
+            ],
+            "mistakes.json:jump-inside-corridor": [
+              "inactive-overlap:B"
+            ],
+            "mistakes.json:final-jump-without-dash": [
+              "inactive-overlap:B"
+            ],
+            "known-skips.json:green-super-skips-outbound-yellow": [
+              "death-overlap:G"
+            ],
+            "accepted-finale-materialization.json": [
+              "inactive-overlap:B"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:rest-60-on-far-blue-floor",
+            "tolerances.json:rest-60-on-first-blue-ledge",
+            "tolerances.json:early-dash-near-ledge-start",
+            "tolerances.json:late-dash-at-ledge-lip",
+            "tolerances.json:short-climb-low-walljump",
+            "tolerances.json:long-climb-high-walljump",
+            "tolerances.json:far-left-takeoff-from-red",
+            "tolerances.json:late-air-dash-final",
+            "accepted-finale-materialization.json"
+          ]
+        },
+        {
+          "id": "spikes-2",
+          "kind": "spikes",
+          "index": 2,
+          "color": "R",
+          "dir": "left",
+          "rect": [
+            37,
+            12,
+            1,
+            6
+          ],
+          "phaseMask": 1,
+          "observed": {
+            "reference": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:rest-60-on-far-blue-floor": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:rest-60-on-first-blue-ledge": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:early-dash-near-ledge-start": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:late-dash-at-ledge-lip": [
+              "inactive-overlap:B",
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:short-climb-low-walljump": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:long-climb-high-walljump": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:far-left-takeoff-from-red": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:late-air-dash-final": [
+              "inactive-overlap:G"
+            ],
+            "mistakes.json:walljump-inside-red-band": [
+              "death-overlap:R",
+              "inactive-overlap:G"
+            ],
+            "mistakes.json:final-jump-without-dash": [
+              "inactive-overlap:G"
+            ],
+            "accepted-finale-materialization.json": [
+              "inactive-overlap:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:rest-60-on-far-blue-floor",
+            "tolerances.json:rest-60-on-first-blue-ledge",
+            "tolerances.json:early-dash-near-ledge-start",
+            "tolerances.json:late-dash-at-ledge-lip",
+            "tolerances.json:short-climb-low-walljump",
+            "tolerances.json:long-climb-high-walljump",
+            "tolerances.json:far-left-takeoff-from-red",
+            "tolerances.json:late-air-dash-final",
+            "accepted-finale-materialization.json"
+          ]
+        },
+        {
+          "id": "spikes-3",
+          "kind": "spikes",
+          "index": 3,
+          "color": "W",
+          "dir": "up",
+          "rect": [
+            0,
+            10,
+            35,
+            1
+          ],
+          "phaseMask": 7,
+          "observed": {
+            "mistakes.json:final-jump-without-dash": [
+              "death-overlap:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:rest-60-on-far-blue-floor",
+            "tolerances.json:rest-60-on-first-blue-ledge",
+            "tolerances.json:early-dash-near-ledge-start",
+            "tolerances.json:late-dash-at-ledge-lip",
+            "tolerances.json:short-climb-low-walljump",
+            "tolerances.json:long-climb-high-walljump",
+            "tolerances.json:far-left-takeoff-from-red",
+            "tolerances.json:late-air-dash-final",
+            "accepted-finale-materialization.json"
+          ]
+        },
+        {
+          "id": "spikes-4",
+          "kind": "spikes",
+          "index": 4,
+          "color": "W",
+          "dir": "right",
+          "rect": [
+            35,
+            11,
+            1,
+            2
+          ],
+          "phaseMask": 7,
+          "observed": {},
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:rest-60-on-far-blue-floor",
+            "tolerances.json:rest-60-on-first-blue-ledge",
+            "tolerances.json:early-dash-near-ledge-start",
+            "tolerances.json:late-dash-at-ledge-lip",
+            "tolerances.json:short-climb-low-walljump",
+            "tolerances.json:long-climb-high-walljump",
+            "tolerances.json:far-left-takeoff-from-red",
+            "tolerances.json:late-air-dash-final",
+            "accepted-finale-materialization.json"
+          ]
+        },
+        {
+          "id": "spikes-5",
+          "kind": "spikes",
+          "index": 5,
+          "color": "M",
+          "dir": "left",
+          "rect": [
+            14,
+            0,
+            1,
+            11
+          ],
+          "phaseMask": 3,
+          "observed": {
+            "reference": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:rest-60-on-far-blue-floor": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:rest-60-on-first-blue-ledge": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:early-dash-near-ledge-start": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:late-dash-at-ledge-lip": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:short-climb-low-walljump": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:long-climb-high-walljump": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:far-left-takeoff-from-red": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:late-air-dash-final": [
+              "inactive-overlap:G"
+            ],
+            "mistakes.json:final-jump-without-dash": [
+              "inactive-overlap:G"
+            ],
+            "accepted-finale-materialization.json": [
+              "inactive-overlap:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:rest-60-on-far-blue-floor",
+            "tolerances.json:rest-60-on-first-blue-ledge",
+            "tolerances.json:early-dash-near-ledge-start",
+            "tolerances.json:late-dash-at-ledge-lip",
+            "tolerances.json:short-climb-low-walljump",
+            "tolerances.json:long-climb-high-walljump",
+            "tolerances.json:far-left-takeoff-from-red",
+            "tolerances.json:late-air-dash-final",
+            "accepted-finale-materialization.json"
+          ]
+        },
+        {
+          "id": "spikes-6",
+          "kind": "spikes",
+          "index": 6,
+          "color": "M",
+          "dir": "right",
+          "rect": [
+            15,
+            0,
+            1,
+            11
+          ],
+          "phaseMask": 3,
+          "observed": {
+            "reference": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:rest-60-on-far-blue-floor": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:rest-60-on-first-blue-ledge": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:early-dash-near-ledge-start": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:late-dash-at-ledge-lip": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:short-climb-low-walljump": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:long-climb-high-walljump": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:far-left-takeoff-from-red": [
+              "inactive-overlap:G"
+            ],
+            "tolerances.json:late-air-dash-final": [
+              "inactive-overlap:G"
+            ],
+            "mistakes.json:final-jump-without-dash": [
+              "inactive-overlap:G"
+            ],
+            "accepted-finale-materialization.json": [
+              "inactive-overlap:G"
+            ]
+          },
+          "referenceWithout": {
+            "won": true,
+            "deaths": 0,
+            "missing": []
+          },
+          "unlocks": [],
+          "survivingVariants": [
+            "tolerances.json:rest-60-on-far-blue-floor",
+            "tolerances.json:rest-60-on-first-blue-ledge",
+            "tolerances.json:early-dash-near-ledge-start",
+            "tolerances.json:late-dash-at-ledge-lip",
+            "tolerances.json:short-climb-low-walljump",
+            "tolerances.json:long-climb-high-walljump",
+            "tolerances.json:far-left-takeoff-from-red",
+            "tolerances.json:late-air-dash-final",
+            "accepted-finale-materialization.json"
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "id": "reference",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:rest-60-on-far-blue-floor",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:rest-60-on-first-blue-ledge",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:early-dash-near-ledge-start",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:late-dash-at-ledge-lip",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:short-climb-low-walljump",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:long-climb-high-walljump",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:far-left-takeoff-from-red",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "tolerances.json:late-air-dash-final",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        },
+        {
+          "id": "mistakes.json:jump-across-gap-into-corridor",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "blue-through-yellow-corridor",
+            "far-green-wall",
+            "upper-red-landing",
+            "green-through-magenta"
+          ]
+        },
+        {
+          "id": "mistakes.json:walljump-inside-red-band",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "upper-red-landing",
+            "green-through-magenta"
+          ]
+        },
+        {
+          "id": "mistakes.json:jump-inside-corridor",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "far-green-wall",
+            "upper-red-landing",
+            "green-through-magenta"
+          ]
+        },
+        {
+          "id": "mistakes.json:final-jump-without-dash",
+          "won": false,
+          "deaths": 1,
+          "missing": []
+        },
+        {
+          "id": "known-skips.json:green-super-skips-outbound-yellow",
+          "won": false,
+          "deaths": 1,
+          "missing": [
+            "blue-through-yellow-corridor",
+            "far-green-wall",
+            "upper-red-landing",
+            "green-through-magenta"
+          ]
+        },
+        {
+          "id": "accepted-finale-materialization.json",
+          "won": true,
+          "deaths": 0,
+          "missing": []
+        }
+      ],
+      "searches": [
+        {
+          "level": 7,
+          "name": "歸途",
+          "status": "no witness within budget",
+          "reason": "time budget",
+          "states": 40359,
+          "elapsedMs": 3000,
+          "method": "reachable-prefix beam",
+          "depthFrames": 246,
+          "prefixStarts": 160,
+          "branchDepthFrames": 186,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "blue-through-yellow-corridor"
+          },
+          "target": "blue-through-yellow-corridor"
+        },
+        {
+          "level": 7,
+          "name": "歸途",
+          "status": "no witness within budget",
+          "reason": "time budget",
+          "states": 41259,
+          "elapsedMs": 3000,
+          "method": "reachable-prefix beam",
+          "depthFrames": 318,
+          "prefixStarts": 225,
+          "branchDepthFrames": 198,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "far-green-wall"
+          },
+          "target": "far-green-wall"
+        },
+        {
+          "level": 7,
+          "name": "歸途",
+          "status": "no witness within budget",
+          "reason": "time budget",
+          "states": 42554,
+          "elapsedMs": 3000,
+          "method": "reachable-prefix beam",
+          "depthFrames": 403,
+          "prefixStarts": 303,
+          "branchDepthFrames": 186,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "upper-red-landing"
+          },
+          "target": "upper-red-landing"
+        },
+        {
+          "level": 7,
+          "name": "歸途",
+          "status": "no witness within budget",
+          "reason": "time budget",
+          "states": 42963,
+          "elapsedMs": 3000,
+          "method": "reachable-prefix beam",
+          "depthFrames": 523,
+          "prefixStarts": 419,
+          "branchDepthFrames": 162,
+          "budget": {
+            "seconds": 3,
+            "states": 80000,
+            "frames": 1200,
+            "step": 6,
+            "width": 24,
+            "avoid": "green-through-magenta"
+          },
+          "target": "green-through-magenta"
+        }
+      ],
+      "acceptedFindings": []
+    }
+  ]
+}

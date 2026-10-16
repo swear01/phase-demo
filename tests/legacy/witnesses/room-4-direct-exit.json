@@ -1,0 +1,12 @@
+{
+  "level": 3,
+  "segments": [
+    {"frames":18,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":-1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":13,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":0,"y":-1,"jump":false,"dash":true,"jumpHeld":false,"dashHeld":true,"grab":false}},
+    {"frames":9,"input":{"x":0,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":true,"grab":false}},
+    {"frames":60,"input":{"x":-1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":3,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}}
+  ]
+}

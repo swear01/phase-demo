@@ -1,0 +1,25 @@
+{
+  "level": 0,
+  "segments": [
+    {"frames":1,"input":{"x":1,"y":-1,"jump":true,"dash":true,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":5,"input":{"x":1,"y":-1,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":12,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":6,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":6,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":5,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":6,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":1,"y":-1,"jump":false,"dash":true,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":5,"input":{"x":1,"y":-1,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":6,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":12,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":12,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":-1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":5,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":6,"input":{"x":0,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":-1,"y":1,"jump":false,"dash":true,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":24,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":24,"input":{"x":-1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":48,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}}
+  ]
+}

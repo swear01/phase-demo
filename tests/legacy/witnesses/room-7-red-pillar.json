@@ -1,0 +1,27 @@
+{
+  "description": "Original seven-room map: direct R15 climb bypasses the red descent floor, R20 climb and middle rest.",
+  "level": 6,
+  "ticks": 1,
+  "segments": [
+    {"frames":35,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":80,"input":{"x":1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":8,"input":{"x":-1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":80,"input":{"x":1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":12,"input":{"x":1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":true}},
+    {"frames":12,"input":{"x":1,"y":0,"jump":false,"dash":true,"jumpHeld":false,"dashHeld":true,"grab":false}},
+    {"frames":46,"input":{"x":1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":10,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":10,"input":{"x":0,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":12,"input":{"x":1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":true}},
+    {"frames":110,"input":{"x":1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":1,"input":{"x":1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":true}},
+    {"frames":10,"input":{"x":-1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":30,"input":{"x":1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":30,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":20,"input":{"x":0,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":0,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":130,"input":{"x":0,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":60,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":6,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}}
+  ]
+}

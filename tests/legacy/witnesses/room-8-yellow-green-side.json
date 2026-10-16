@@ -1,0 +1,22 @@
+{
+  "level": 7,
+  "segments": [
+    {"frames":26,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":30,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":true}},
+    {"frames":50,"input":{"x":0,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":1,"input":{"x":0,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":true}},
+    {"frames":18,"input":{"x":0,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":16,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":1,"input":{"x":1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":true}},
+    {"frames":3,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":true}},
+    {"frames":25,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":30,"input":{"x":0,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":20,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":-1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":30,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":40,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":80,"input":{"x":0,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":14,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}}
+  ]
+}

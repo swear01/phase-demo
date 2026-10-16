@@ -1,0 +1,24 @@
+{
+  "level": 5,
+  "segments": [
+    {"frames":130,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":20,"input":{"x":0,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":19,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":10,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":66,"input":{"x":1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":1,"input":{"x":-1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":19,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":14,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":30,"input":{"x":0,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":4,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":-1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":19,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":13,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":0,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":-1,"y":-1,"jump":false,"dash":true,"jumpHeld":false,"dashHeld":true,"grab":false}},
+    {"frames":11,"input":{"x":-1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":true,"grab":false}},
+    {"frames":70,"input":{"x":-1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":5,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}}
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "author": "Claude Code",
+  "model": "claude-opus-5-5",
+  "date": "2026-10-16",
+  "benchmarkLevel": 5,
+  "rooms": [
+    {
+      "level": 0,
+      "name": "紅刺",
+      "jumps": 2,
+      "dashes": 0,
+      "frames": 115
+    },
+    {
+      "level": 1,
+      "name": "頭頂",
+      "jumps": 3,
+      "dashes": 0,
+      "frames": 196
+    },
+    {
+      "level": 2,
+      "name": "保藍",
+      "jumps": 2,
+      "dashes": 1,
+      "frames": 135
+    },
+    {
+      "level": 3,
+      "name": "色帶",
+      "jumps": 3,
+      "dashes": 1,
+      "frames": 246
+    },
+    {
+      "level": 4,
+      "name": "雙門",
+      "jumps": 3,
+      "dashes": 1,
+      "frames": 161
+    },
+    {
+      "level": 5,
+      "name": "五跳",
+      "jumps": 5,
+      "dashes": 0,
+      "frames": 270
+    },
+    {
+      "level": 6,
+      "name": "換色台",
+      "jumps": 3,
+      "dashes": 1,
+      "frames": 226
+    },
+    {
+      "level": 7,
+      "name": "歸途",
+      "jumps": 5,
+      "dashes": 2,
+      "frames": 467
+    }
+  ]
+}

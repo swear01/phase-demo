@@ -1,0 +1,28 @@
+{
+  "level": 6,
+  "segments": [
+    {"frames":20,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":40,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":true}},
+    {"frames":40,"input":{"x":1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":1,"input":{"x":1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":true}},
+    {"frames":24,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":60,"input":{"x":0,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":12,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":true}},
+    {"frames":60,"input":{"x":1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":10,"input":{"x":0,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":30,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":true}},
+    {"frames":60,"input":{"x":1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":11,"input":{"x":1,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":true}},
+    {"frames":12,"input":{"x":1,"y":0,"jump":false,"dash":true,"jumpHeld":false,"dashHeld":true,"grab":false}},
+    {"frames":80,"input":{"x":1,"y":-1,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":true}},
+    {"frames":20,"input":{"x":-1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":10,"input":{"x":0,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":1,"input":{"x":0,"y":0,"jump":true,"dash":false,"jumpHeld":true,"dashHeld":false,"grab":false}},
+    {"frames":140,"input":{"x":0,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}},
+    {"frames":40,"input":{"x":1,"y":0,"jump":false,"dash":false,"jumpHeld":false,"dashHeld":false,"grab":false}}
+  ],
+  "candidateSpikes": [{"x":14,"y":0,"length":13,"dir":"left","color":"R"}]
+}

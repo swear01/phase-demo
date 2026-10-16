@@ -1,0 +1,350 @@
+{
+  "units": "tiles",
+  "rooms": [
+    {
+      "level": 0,
+      "mechanisms": [
+        {
+          "id": "blue-borrow",
+          "kind": "contact",
+          "rect": [
+            8,
+            20,
+            9,
+            1
+          ],
+          "phaseMask": 2
+        }
+      ]
+    },
+    {
+      "level": 1,
+      "mechanisms": [
+        {
+          "id": "blue-step",
+          "kind": "contact",
+          "rect": [
+            11,
+            18,
+            9,
+            2
+          ],
+          "phaseMask": 2
+        },
+        {
+          "id": "green-ledge",
+          "kind": "contact",
+          "rect": [
+            8,
+            15,
+            6,
+            1
+          ],
+          "phaseMask": 4
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "mechanisms": [
+        {
+          "id": "blue-through-yellow-pillar",
+          "kind": "cross",
+          "rect": [
+            17,
+            0,
+            3,
+            23
+          ],
+          "phaseMask": 2,
+          "direction": 1
+        },
+        {
+          "id": "far-blue-ledge",
+          "kind": "contact",
+          "rect": [
+            21,
+            19,
+            6,
+            2
+          ],
+          "phaseMask": 2
+        },
+        {
+          "id": "green-change-past-pillar",
+          "kind": "change",
+          "rect": [
+            20,
+            0,
+            20,
+            23
+          ],
+          "phaseMask": 4
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "mechanisms": [
+        {
+          "id": "blue-wall-borrow",
+          "kind": "wall",
+          "rect": [
+            12,
+            0,
+            1,
+            18
+          ],
+          "phaseMask": 2
+        },
+        {
+          "id": "green-ledge",
+          "kind": "contact",
+          "rect": [
+            3,
+            10,
+            6,
+            1
+          ],
+          "phaseMask": 4
+        },
+        {
+          "id": "red-cross-above-band",
+          "kind": "cross",
+          "rect": [
+            12,
+            0,
+            2,
+            8
+          ],
+          "phaseMask": 1,
+          "axis": "x",
+          "direction": 1
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "mechanisms": [
+        {
+          "id": "blue-step",
+          "kind": "contact",
+          "rect": [
+            9,
+            16,
+            5,
+            2
+          ],
+          "phaseMask": 2
+        },
+        {
+          "id": "green-through-magenta",
+          "kind": "cross",
+          "rect": [
+            17,
+            0,
+            2,
+            23
+          ],
+          "phaseMask": 4,
+          "axis": "x",
+          "direction": 1
+        },
+        {
+          "id": "green-platform",
+          "kind": "contact",
+          "rect": [
+            22,
+            14,
+            4,
+            2
+          ],
+          "phaseMask": 4
+        },
+        {
+          "id": "red-through-cyan",
+          "kind": "cross",
+          "rect": [
+            28,
+            0,
+            2,
+            23
+          ],
+          "phaseMask": 1,
+          "axis": "x",
+          "direction": 1
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "mechanisms": [
+        {
+          "id": "blue-front",
+          "kind": "wall",
+          "rect": [
+            13,
+            0,
+            1,
+            20
+          ],
+          "phaseMask": 2,
+          "side": -1
+        },
+        {
+          "id": "green-relay",
+          "kind": "wall",
+          "rect": [
+            8,
+            0,
+            1,
+            12
+          ],
+          "phaseMask": 4,
+          "side": 1
+        },
+        {
+          "id": "red-relay",
+          "kind": "wall",
+          "rect": [
+            19,
+            0,
+            1,
+            15
+          ],
+          "phaseMask": 1,
+          "side": -1
+        },
+        {
+          "id": "blue-back",
+          "kind": "wall",
+          "rect": [
+            13,
+            0,
+            1,
+            20
+          ],
+          "phaseMask": 2,
+          "side": 1
+        }
+      ]
+    },
+    {
+      "level": 6,
+      "mechanisms": [
+        {
+          "id": "red-through-first-cyan",
+          "kind": "cross",
+          "rect": [
+            9,
+            0,
+            2,
+            23
+          ],
+          "phaseMask": 1,
+          "axis": "x",
+          "direction": 1
+        },
+        {
+          "id": "magenta-platform-red",
+          "kind": "contact",
+          "rect": [
+            13,
+            18,
+            7,
+            2
+          ],
+          "phaseMask": 1
+        },
+        {
+          "id": "magenta-platform-blue",
+          "kind": "contact",
+          "rect": [
+            13,
+            18,
+            7,
+            2
+          ],
+          "phaseMask": 2
+        },
+        {
+          "id": "green-through-magenta",
+          "kind": "cross",
+          "rect": [
+            22,
+            0,
+            2,
+            23
+          ],
+          "phaseMask": 4,
+          "axis": "x",
+          "direction": 1
+        },
+        {
+          "id": "red-through-second-cyan",
+          "kind": "cross",
+          "rect": [
+            32,
+            0,
+            2,
+            23
+          ],
+          "phaseMask": 1,
+          "axis": "x",
+          "direction": 1
+        }
+      ]
+    },
+    {
+      "level": 7,
+      "mechanisms": [
+        {
+          "id": "blue-through-yellow-corridor",
+          "kind": "cross",
+          "rect": [
+            17,
+            16,
+            8,
+            2
+          ],
+          "phaseMask": 2,
+          "direction": 1
+        },
+        {
+          "id": "far-green-wall",
+          "kind": "contact",
+          "rect": [
+            38,
+            0,
+            1,
+            20
+          ],
+          "phaseMask": 4
+        },
+        {
+          "id": "upper-red-landing",
+          "kind": "contact",
+          "rect": [
+            24,
+            8,
+            10,
+            1
+          ],
+          "phaseMask": 1
+        },
+        {
+          "id": "green-through-magenta",
+          "kind": "cross",
+          "rect": [
+            14,
+            0,
+            2,
+            11
+          ],
+          "phaseMask": 4,
+          "direction": -1
+        }
+      ]
+    }
+  ]
+}
